@@ -1,0 +1,130 @@
+﻿@using NoteMarketPlaces.Models
+@model IEnumerable<NoteMarketPlaces.Models.NoteDetail>
+
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/Register.cshtml";
+}
+
+<section class="setfooter">
+
+    <section id="dashboard-top">
+
+        <div class="container">
+
+            <!-- dashboard heading & add note button -->
+            <div class="row dashboard-top-title">
+
+                <!-- Title -->
+                <div class="col-md-6 col-sm-12 col-12">
+                    <div class="dashboar-heading">
+                        <h2>Dashboard</h2>
+                    </div>
+                </div>
+
+                <!-- button -->
+                <div class="col-md-6 col-sm-12 col-12 text-right">
+                    <a href="@Url.Action("AddNote", "Home")">
+                        <!-- Profile Button -->
+                        <button type="button" id="mybtn" class="btn text-uppercase text-center"><b>Add Notes</b></button>
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- Dashboard content -->
+            <div class="dashboar-content">
+                <div class="row">
+
+                    <!-- left -->
+                    <div class="col-lg-6 col-md-12 col-sm-12 col-12 rmvpadding">
+
+                        <div class="row earning">
+                            <!-- Earning -->
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <div class="myearning">
+                                    <img src="~/content/images/home/download.png" alt="earning">
+                                    <h5>My Earning</h5>
+                                </div>
+                            </div>
+
+                            <!-- number of notes -->
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-12">
+
+                                <div class="row">
+
+                                    <!-- Number of notes sell -->
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                        <div class="dash-left text-center">
+                                            <h4><b>@ViewBag.soldNotes</b></h4>
+                                            <p>Number Of Sold Notes</p>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Money Earned  -->
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                        <div class="dash-left text-center">
+                                            <h4><b>&#36;@ViewBag.moneyEarned</b></h4>
+                                            <p>Money Earned</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right -->
+                    <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="row mynote-info">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-7">
+                                <div>
+
+                                    <!-- Number of notes sell -->
+                                    <div class="dash-right text-center">
+                                        <h4><b>@ViewBag.downloads</b></h4>
+                                        <p>My Downloads</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-7">
+
+                                <!-- Number of notes sell -->
+                                <div class="dash-right text-center">
+                                    <h4><b>@ViewBag.rejected</b></h4>
+                                    <p>My Rejected Notes</p>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-7">
+
+                                <!-- Number of notes sell -->
+                                <div class="dash-right text-center">
+                                    <h4><b>@ViewBag.buyerRequest</b></h4>
+                                    <p>Buys Request</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+@{ 
+    Html.RenderAction("InProgress", "Home");
+}
+
+@{ 
+    Html.RenderAction("Published", "Home");
+}
+
+</section>

@@ -1,0 +1,478 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NoteMarketPlaceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AdminDetail">
+    <Key>
+      <PropertyRef Name="AdminID" />
+    </Key>
+    <Property Name="AdminID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="Type" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="SecondaryEmail" Type="varchar" MaxLength="100" />
+    <Property Name="PhoneNumber" Type="varchar" MaxLength="20" />
+    <Property Name="ProfilePicture" Type="varchar(max)" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Categories" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Description" Type="varchar(max)" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ContactUs">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FullName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="EmailAddress" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Subject" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Comments" Type="varchar(max)" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CountryName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CountryCode" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NoteDetail">
+    <Key>
+      <PropertyRef Name="NoteID" />
+    </Key>
+    <Property Name="NoteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OwnerID" Type="int" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Category" Type="varchar" MaxLength="100" />
+    <Property Name="BookPicture" Type="varchar(max)" Nullable="false" />
+    <Property Name="UploadNote" Type="varchar(max)" Nullable="false" />
+    <Property Name="NoteType" Type="varchar" MaxLength="100" />
+    <Property Name="NumberOfPages" Type="int" />
+    <Property Name="NotesDescription" Type="varchar(max)" Nullable="false" />
+    <Property Name="InstitutionName" Type="varchar" MaxLength="200" />
+    <Property Name="Country" Type="varchar" MaxLength="100" />
+    <Property Name="Course" Type="varchar" MaxLength="100" />
+    <Property Name="CourseCode" Type="varchar" MaxLength="100" />
+    <Property Name="Professor" Type="varchar" MaxLength="100" />
+    <Property Name="SellPrice" Type="int" Nullable="false" />
+    <Property Name="NotePreview" Type="varchar(max)" />
+    <Property Name="NoteSize" Type="int" />
+    <Property Name="PublishedDate" Type="datetime" />
+    <Property Name="Status" Type="varchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'NoteMarketPlace.dbo.NoteRequest' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="NoteRequest">
+    <Key>
+      <PropertyRef Name="BuyerID" />
+      <PropertyRef Name="SellerID" />
+      <PropertyRef Name="NoteID" />
+      <PropertyRef Name="Status" />
+      <PropertyRef Name="ApprovedDate" />
+    </Key>
+    <Property Name="BuyerID" Type="int" Nullable="false" />
+    <Property Name="SellerID" Type="int" Nullable="false" />
+    <Property Name="NoteID" Type="int" Nullable="false" />
+    <Property Name="Status" Type="bit" Nullable="false" />
+    <Property Name="ApprovedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'NoteMarketPlace.dbo.NoteReview' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="NoteReview">
+    <Key>
+      <PropertyRef Name="NoteID" />
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="OwnerID" />
+      <PropertyRef Name="Rating" />
+      <PropertyRef Name="Comments" />
+      <PropertyRef Name="IsActive" />
+    </Key>
+    <Property Name="NoteID" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="OwnerID" Type="int" Nullable="false" />
+    <Property Name="Rating" Type="int" Nullable="false" />
+    <Property Name="Comments" Type="varchar(max)" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'NoteMarketPlace.dbo.RejectedNote' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="RejectedNote">
+    <Key>
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="NoteID" />
+      <PropertyRef Name="Remark" />
+    </Key>
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="NoteID" Type="int" Nullable="false" />
+    <Property Name="Remark" Type="varchar(max)" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'NoteMarketPlace.dbo.SpamReport' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="SpamReport">
+    <Key>
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="NoteID" />
+      <PropertyRef Name="Remark" />
+    </Key>
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="NoteID" Type="int" Nullable="false" />
+    <Property Name="Remark" Type="varchar(max)" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="SystemConfiguration">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmailID1" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="EmailID2" Type="varchar" MaxLength="100" />
+    <Property Name="PhoneNumber" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="DefaultProfilePicture" Type="varchar(max)" Nullable="false" />
+    <Property Name="DefaultNotePreview" Type="varchar(max)" Nullable="false" />
+    <Property Name="FacebookURL" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="TwitterURL" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LinkedInURL" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="Type">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TypeName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="varchar(max)" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="DOB" Type="datetime" />
+    <Property Name="Gender" Type="varchar" MaxLength="10" />
+    <Property Name="PhoneNumber" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="ProfilePicture" Type="varchar(max)" />
+    <Property Name="Address1" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Address2" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="City" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="State" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="ZipCode" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Country" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="University" Type="varchar" MaxLength="100" />
+    <Property Name="College" Type="varchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="EmailID" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="IsEmailVerified" Type="bit" Nullable="false" />
+    <Property Name="IsDetailsSubmitted" Type="bit" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="ModifiedBy" Type="int" />
+  </EntityType>
+  <Association Name="FK_NoteDetail_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="NoteDetail" Type="Self.NoteDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="NoteDetail">
+        <PropertyRef Name="OwnerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NoteRequest_NoteDetail">
+    <End Role="NoteDetail" Type="Self.NoteDetail" Multiplicity="1" />
+    <End Role="NoteRequest" Type="Self.NoteRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NoteDetail">
+        <PropertyRef Name="NoteID" />
+      </Principal>
+      <Dependent Role="NoteRequest">
+        <PropertyRef Name="NoteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NoteRequest_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="NoteRequest" Type="Self.NoteRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="NoteRequest">
+        <PropertyRef Name="BuyerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NoteRequest_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="NoteRequest" Type="Self.NoteRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="NoteRequest">
+        <PropertyRef Name="SellerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NoteReview_NoteDetail1">
+    <End Role="NoteDetail" Type="Self.NoteDetail" Multiplicity="1" />
+    <End Role="NoteReview" Type="Self.NoteReview" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NoteDetail">
+        <PropertyRef Name="NoteID" />
+      </Principal>
+      <Dependent Role="NoteReview">
+        <PropertyRef Name="NoteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NoteReview_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="NoteReview" Type="Self.NoteReview" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="NoteReview">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NoteReview_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="NoteReview" Type="Self.NoteReview" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="NoteReview">
+        <PropertyRef Name="OwnerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RejectedNote_NoteDetail">
+    <End Role="NoteDetail" Type="Self.NoteDetail" Multiplicity="1" />
+    <End Role="RejectedNote" Type="Self.RejectedNote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NoteDetail">
+        <PropertyRef Name="NoteID" />
+      </Principal>
+      <Dependent Role="RejectedNote">
+        <PropertyRef Name="NoteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RejectedNote_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="RejectedNote" Type="Self.RejectedNote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="RejectedNote">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SpamReport_NoteDetail">
+    <End Role="NoteDetail" Type="Self.NoteDetail" Multiplicity="1" />
+    <End Role="SpamReport" Type="Self.SpamReport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NoteDetail">
+        <PropertyRef Name="NoteID" />
+      </Principal>
+      <Dependent Role="SpamReport">
+        <PropertyRef Name="NoteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SpamReport_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="SpamReport" Type="Self.SpamReport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="SpamReport">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserDetail_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UserDetail" Type="Self.UserDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserDetail">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="NoteMarketPlaceModelStoreContainer">
+    <EntitySet Name="AdminDetail" EntityType="Self.AdminDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ContactUs" EntityType="Self.ContactUs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NoteDetail" EntityType="Self.NoteDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SystemConfiguration" EntityType="Self.SystemConfiguration" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserDetail" EntityType="Self.UserDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NoteRequest" EntityType="Self.NoteRequest" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [NoteRequest].[BuyerID] AS [BuyerID], 
+    [NoteRequest].[SellerID] AS [SellerID], 
+    [NoteRequest].[NoteID] AS [NoteID], 
+    [NoteRequest].[Status] AS [Status], 
+    [NoteRequest].[ApprovedDate] AS [ApprovedDate]
+    FROM [dbo].[NoteRequest] AS [NoteRequest]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="NoteReview" EntityType="Self.NoteReview" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [NoteReview].[NoteID] AS [NoteID], 
+    [NoteReview].[UserID] AS [UserID], 
+    [NoteReview].[OwnerID] AS [OwnerID], 
+    [NoteReview].[Rating] AS [Rating], 
+    [NoteReview].[Comments] AS [Comments], 
+    [NoteReview].[CreatedDate] AS [CreatedDate], 
+    [NoteReview].[CreatedBy] AS [CreatedBy], 
+    [NoteReview].[ModifiedDate] AS [ModifiedDate], 
+    [NoteReview].[ModifiedBy] AS [ModifiedBy], 
+    [NoteReview].[IsActive] AS [IsActive]
+    FROM [dbo].[NoteReview] AS [NoteReview]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="RejectedNote" EntityType="Self.RejectedNote" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [RejectedNote].[UserID] AS [UserID], 
+    [RejectedNote].[NoteID] AS [NoteID], 
+    [RejectedNote].[Remark] AS [Remark], 
+    [RejectedNote].[CreatedDate] AS [CreatedDate], 
+    [RejectedNote].[CreatedBy] AS [CreatedBy], 
+    [RejectedNote].[ModifiedDate] AS [ModifiedDate], 
+    [RejectedNote].[ModifiedBy] AS [ModifiedBy]
+    FROM [dbo].[RejectedNote] AS [RejectedNote]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="SpamReport" EntityType="Self.SpamReport" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [SpamReport].[UserID] AS [UserID], 
+    [SpamReport].[NoteID] AS [NoteID], 
+    [SpamReport].[Remark] AS [Remark], 
+    [SpamReport].[CreatedDate] AS [CreatedDate], 
+    [SpamReport].[CreatedBy] AS [CreatedBy], 
+    [SpamReport].[ModifiedDate] AS [ModifiedDate], 
+    [SpamReport].[ModifiedBy] AS [ModifiedBy]
+    FROM [dbo].[SpamReport] AS [SpamReport]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_NoteDetail_Users" Association="Self.FK_NoteDetail_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="NoteDetail" EntitySet="NoteDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NoteRequest_NoteDetail" Association="Self.FK_NoteRequest_NoteDetail">
+      <End Role="NoteDetail" EntitySet="NoteDetail" />
+      <End Role="NoteRequest" EntitySet="NoteRequest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NoteRequest_Users" Association="Self.FK_NoteRequest_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="NoteRequest" EntitySet="NoteRequest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NoteRequest_Users1" Association="Self.FK_NoteRequest_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="NoteRequest" EntitySet="NoteRequest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NoteReview_NoteDetail1" Association="Self.FK_NoteReview_NoteDetail1">
+      <End Role="NoteDetail" EntitySet="NoteDetail" />
+      <End Role="NoteReview" EntitySet="NoteReview" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NoteReview_Users" Association="Self.FK_NoteReview_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="NoteReview" EntitySet="NoteReview" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NoteReview_Users1" Association="Self.FK_NoteReview_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="NoteReview" EntitySet="NoteReview" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RejectedNote_NoteDetail" Association="Self.FK_RejectedNote_NoteDetail">
+      <End Role="NoteDetail" EntitySet="NoteDetail" />
+      <End Role="RejectedNote" EntitySet="RejectedNote" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RejectedNote_Users" Association="Self.FK_RejectedNote_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="RejectedNote" EntitySet="RejectedNote" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SpamReport_NoteDetail" Association="Self.FK_SpamReport_NoteDetail">
+      <End Role="NoteDetail" EntitySet="NoteDetail" />
+      <End Role="SpamReport" EntitySet="SpamReport" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SpamReport_Users" Association="Self.FK_SpamReport_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="SpamReport" EntitySet="SpamReport" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserDetail_Users" Association="Self.FK_UserDetail_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserDetail" EntitySet="UserDetail" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
