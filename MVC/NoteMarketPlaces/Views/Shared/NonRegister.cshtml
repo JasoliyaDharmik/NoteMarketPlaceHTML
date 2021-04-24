@@ -34,76 +34,154 @@
 <body data-target=".navbar">
 
     <!-- Header -->
-    <header>
-        <nav class="navbar fixed-top navbar-expand-lg white-nav-top white-navbar">
-            <div class="container">
+    @if (ViewBag.IsHomePAge == null)
+    {
+        <header>
+            <nav class="navbar fixed-top navbar-expand-lg white-nav-top white-navbar">
+                <div class="container">
 
-                <div class="navbar-header">
+                    <div class="navbar-header">
 
-                    <!-- Mobile Menu Open Button -->
-                    <span id="mobile-nav-open-btn">&#9776;</span>
+                        <!-- Mobile Menu Open Button -->
+                        <span id="mobile-nav-open-btn">&#9776;</span>
 
-                    <!-- Logo -->
-                    <a class="navbar-brand" href=""><img class="img-fluid" src="~/Content/images/pre-login/Capture.png"></a>
-                </div>
+                        <!-- Logo -->
+                        <a class="navbar-brand" href=""><img class="img-fluid" src="~/Content/images/pre-login/Capture.png"></a>
+                    </div>
 
-                <!-- Main Menu -->
-                <div class="collapse navbar-collapse justify-content-end default-header" id="navbarSupportedContent">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            @Html.ActionLink("Search Notes", "SearchNote", "Home", null, new { @class = "nav-link" })
-                        </li>
-                        <li class="nav-item">
-                            @Html.ActionLink("Sell Your Notes", "SellNote", "Home", null, new { @class = "nav-link" })
-                        </li>
-                        <li class="nav-item">
-                            @Html.ActionLink("Buyer Requests", "BuyerRequest", "Home", null, new { @class = "nav-link" })
-                        </li>
-                        <li class="nav-item">
-                            @Html.ActionLink("FAQ", "FAQ", "Home", null, new { @class = "nav-link" })
-                        </li>
-                        <li class="nav-item">
-                            @Html.ActionLink("Contact Us", "ContactUs", "Home", null, new { @class = "nav-link" })
-                        </li>
-                        <li class="nav-item">
-                            @Html.ActionLink("Login", "Login","Home",null, new { @class = "nav-link", @id="mynavbtn" })
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Mobile Menu -->
-                <div id="mobile-nav">
-                    <!-- Mobile Menu Close Button -->
-                    <span id="mobile-nav-close-btn">&times;</span>
-
-                    <div id="mobile-nav-content">
+                    <!-- Main Menu -->
+                    <div class="collapse navbar-collapse justify-content-end default-header" id="navbarSupportedContent">
                         <ul class="navbar-nav">
-                            <li>
+                            <li class="nav-item">
                                 @Html.ActionLink("Search Notes", "SearchNote", "Home", null, new { @class = "nav-link" })
                             </li>
-                            <li>
-                                @Html.ActionLink("Sell Your Notes", "SellNote", "Home", null, new { @class = "nav-link" })
+                            <li class="nav-item">
+                                @Html.ActionLink("Sell Your Notes", "Dashboard", "Home", null, new { @class = "nav-link" })
                             </li>
-                            <li>
+                            <li class="nav-item">
                                 @Html.ActionLink("Buyer Requests", "BuyerRequest", "Home", null, new { @class = "nav-link" })
                             </li>
-                            <li>
+                            <li class="nav-item">
                                 @Html.ActionLink("FAQ", "FAQ", "Home", null, new { @class = "nav-link" })
                             </li>
-                            <li>
+                            <li class="nav-item">
                                 @Html.ActionLink("Contact Us", "ContactUs", "Home", null, new { @class = "nav-link" })
                             </li>
-                            <li>
-                                @Html.ActionLink("Login", "Login","Home",null, new { @class = "btn text-center", @id="mynavbtn"})
+                            <li class="nav-item">
+                                @Html.ActionLink("Login", "Login", "Home", null, new { @class = "nav-link", @id = "mynavbtn" })
                             </li>
                         </ul>
                     </div>
-                </div>
 
-            </div>
-        </nav>
-    </header>
-    <!-- Header Ends -->
+                    <!-- Mobile Menu -->
+                    <div id="mobile-nav">
+                        <!-- Mobile Menu Close Button -->
+                        <span id="mobile-nav-close-btn">&times;</span>
+
+                        <div id="mobile-nav-content">
+                            <ul class="navbar-nav">
+                                <li>
+                                    @Html.ActionLink("Search Notes", "SearchNote", "Home", null, new { @class = "nav-link" })
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Sell Your Notes", "Dashboard", "Home", null, new { @class = "nav-link" })
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Buyer Requests", "BuyerRequest", "Home", null, new { @class = "nav-link" })
+                                </li>
+                                <li>
+                                    @Html.ActionLink("FAQ", "FAQ", "Home", null, new { @class = "nav-link" })
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Contact Us", "ContactUs", "Home", null, new { @class = "nav-link" })
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Login", "Login", "Home", null, new { @class = "btn text-center", @id = "mynavbtn" })
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </nav>
+        </header>
+        <!-- Header Ends -->
+    }
+    else
+    {
+        <header>
+
+            <nav class="navbar fixed-top navbar-expand-lg white-navbar navbar-movable">
+                <div class="container">
+
+                    <div class="navbar-header">
+
+                        <!-- Mobile Menu Open Button -->
+                        <span id="mobile-nav-open-btn">&#9776;</span>
+                        <!-- Logo -->
+                        <a class="navbar-brand" href=""><img class="img-fluid" src="~/Content/images/pre-login/top-logo.png"></a>
+                    </div>
+
+                    <!-- Main Menu -->
+                    <div class="collapse navbar-collapse justify-content-end default-header" id="navbarSupportedContent">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                @Html.ActionLink("Search Notes", "SearchNote", "Home", null, new { @class = "nav-link" })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Sell Your Notes", "Dashboard", "Home", null, new { @class = "nav-link" })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Buyer Requests", "BuyerRequest", "Home", null, new { @class = "nav-link" })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("FAQ", "FAQ", "Home", null, new { @class = "nav-link" })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Contact Us", "ContactUs", "Home", null, new { @class = "nav-link" })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Login", "Login", "Home", null, new { @class = "nav-link", @id = "mynavbtn" })
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Mobile Menu -->
+                    <div id="mobile-nav">
+                        <!-- Mobile Menu Close Button -->
+                        <span id="mobile-nav-close-btn">&times;</span>
+
+                        <div id="mobile-nav-content">
+                            <ul class="navbar-nav">
+                                <li>
+                                    @Html.ActionLink("Search Notes", "SearchNote", "Home", null, new { @class = "nav-link" })
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Sell Your Notes", "Dashboard", "Home", null, new { @class = "nav-link" })
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Buyer Requests", "BuyerRequest", "Home", null, new { @class = "nav-link" })
+                                </li>
+                                <li>
+                                    @Html.ActionLink("FAQ", "FAQ", "Home", null, new { @class = "nav-link" })
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Contact Us", "ContactUs", "Home", null, new { @class = "nav-link" })
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Login", "Login", "Home", null, new { @class = "btn text-center", @id = "mynavbtn" })
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </nav>
+
+
+        </header>
+        <!-- Header Ends -->
+    }
 
     @RenderBody()
 
@@ -121,9 +199,9 @@
                     <div class="col-md-6 col-12 text-right">
 
                         <ul class="social-list">
-                            <li><a href=""><i class="fa fa-facebook"></i></a></li>
-                            <li><a href=""><i class="fa fa-twitter"></i></a></li>
-                            <li><a href=""><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href=""><i class="fab fa-twitter"></i></a></li>
+                            <li><a href=""><i class="fab fa-linkedin"></i></a></li>
                         </ul>
                     </div>
 

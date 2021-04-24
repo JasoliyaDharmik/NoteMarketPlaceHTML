@@ -13,9 +13,9 @@
      right: 0%;
  }
 
- .navbar-movable #mobile-nav-open-btn {
+.navbar-movable #mobile-nav-open-btn {
      right: 6%;
- }
+}
 
  #mobile-nav {
      /* by defalut,  mobile nav will be hidden with height 0% */
@@ -151,8 +151,8 @@
 
      }
 
-     .InputEmail1::placeholder,
-     .InputPassword1::placeholder {
+     .InputEmail1:-ms-input-placeholder,
+     .InputPassword1:-moz-placeholder {
          font-size: 12px;
 
          line-height: 16px;
@@ -657,12 +657,6 @@
          min-height: 0;
      }
 
-/*
-     .rate {
-         -webkit-transform: translateX(50%) !important;
-         transform: translateX(50%) !important;
-     }
-*/
      .rate {
          margin-left: 28%;
      }

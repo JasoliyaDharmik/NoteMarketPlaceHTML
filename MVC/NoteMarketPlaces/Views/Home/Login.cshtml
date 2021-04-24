@@ -37,7 +37,6 @@
                         <!-- Email -->
                         <div class="form-group">
                             <label class="mylabel" for="InputEmail1">Email</label>
-                            <!--<input type="email" class="form-control InputEmail1" aria-describedby="emailHelp" placeholder="Enter your Email Address"> -->
                             @Html.TextBoxFor(m => m.EmailID, new { @class = "form-control InputEmail1", @Placeholder = "Enter Your Email Address" })
                         </div>
 
@@ -51,7 +50,6 @@
 
                                     <!-- Forgot Password -->
                                     <div class="col-6 col-sm-6 clo-md-6  text-right">
-                                        <!-- <label class="myforgotlabel">Forgot Password?</label> -->
                                         @Html.ActionLink("Forgot Password", "ForgotPassword")
                                     </div>
                                 </div>
@@ -59,7 +57,6 @@
 
                             <!-- Eye icon -->
                             <div class="wrapper">
-                                <!--  <input type="password" class="errorborder form-control InputEmail1 InputPassword1" placeholder="Enter your password"> -->
                                 @Html.TextBoxFor(m => m.Password, new { @class = " form-control InputEmail1 InputPassword1", @placeholder = "Enter your password" })
                                 <img class="pass-eye" src="~/Content/images/pre-login/eye.png" alt="Show">
                             </div>
@@ -72,7 +69,6 @@
 
                         <!-- Remember Me -->
                         <div class="form-group form-check mycheck123">
-                            <!--  <input type="checkbox" class="form-check-input exampleCheck">-->
                             @Html.CheckBoxFor(m => m.RememberMe, new { @class = "form-check-input exampleCheck" })
                             <label class="mycheckbox" for="exampleCheck">Remember Me</label>
                         </div>

@@ -1,5 +1,5 @@
 ﻿
-@if (ViewBag.IsRegister)
+@if (ViewBag.isRegister)
 {
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/Register.cshtml";
@@ -32,7 +32,8 @@ else
                                 </div>
                             </div>
                             <div class="col-md-4 col-sm-4 col-6">
-                                <button type="submit" class="btn text-uppercase text-center" id="mybtn"><b>Learn More</b></button>
+                                @Html.ActionLink("Learn More", "FAQ", "Home", null, new { @class = "font-weight-bold btn text-uppercase", @id = "mybtn" })
+                                
                             </div>
                         </div>
                     </div>
@@ -86,7 +87,8 @@ else
                         </div>
                         <div class="row justify-content-center">
                             <div class="col-md-6 col-sm-6 col-6">
-                                <button type="submit" class="btn text-uppercase text-center" id="mybtn">Download</button>
+                                @Html.ActionLink("Download","SearchNote","Home",null,new { @class="btn text-uppercase text-center", @id="mybtn"})
+                                
                             </div>
                         </div>
                     </div>
@@ -105,7 +107,7 @@ else
                         </div>
                         <div class="row justify-content-center">
                             <div class="col-md-6 col-sm-6 col-6">
-                                <button type="submit" class="btn text-uppercase text-center" id="mybtn">sell book</button>
+                                @Html.ActionLink("Sell Book", "Dashboard", "Home", null, new { @class = "btn text-uppercase", @id = "mybtn" })
                             </div>
                         </div>
                     </div>
@@ -245,7 +247,7 @@ else
                             <div class="row text-left">
                                 <div class="col-md-12">
                                     <div class="feedback-text text-left">
-                                        <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magnam facere, laborum accusamus iusto quaerat quisquam eos totam maxime, ."</p>
+                                        <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magnam facere, laborum accusamus iusto quaerat quisquam eos totam maxime."</p>
                                     </div>
                                 </div>
                             </div>

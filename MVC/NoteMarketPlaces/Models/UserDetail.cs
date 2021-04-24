@@ -21,6 +21,8 @@ namespace NoteMarketPlaces.Models
         public Nullable<System.DateTime> DOB { get; set; }
         public string Gender { get; set; }
         public string CountryCode { get; set; }
+
+        [Phone]
         public string PhoneNumber { get; set; }
 
         public string ProfilePicture { get; set; }
@@ -38,6 +40,7 @@ namespace NoteMarketPlaces.Models
         public string State { get; set; }
 
         [Required]
+        [RegularExpression("^[1-9]{1}[0-9]{2}[0-9]{3}$", ErrorMessage = "Enter Valid ZipCode!")]
         public string ZipCode { get; set; }
 
 
@@ -55,4 +58,3 @@ namespace NoteMarketPlaces.Models
         public virtual User User { get; set; }
     }
 }
-

@@ -32,23 +32,27 @@ namespace NoteMarketPlaces.Models
 
         [Required]
         [Display(Name = "first name")]
+        [RegularExpression("^[a-zA-Z]*$", ErrorMessage = "Enter valid name")]
         public string FirstName { get; set; }
 
         [Required]
         [Display(Name = "last name")]
+        [RegularExpression("^[a-zA-Z]*$", ErrorMessage = "Enter valid name")]
         public string LastName { get; set; }
 
         [Required]
-        [Display(Name = "Email address")]
         [EmailAddress]
+        [Display(Name = "Email address")]
         public string EmailID { get; set; }
 
         [Required]
         [Display(Name = "password")]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*\d)(?=.*[^\da-z]).\S{5,23}$", ErrorMessage = "Password must be between 6 and 24 characters and contain one lowercase letter, one digit and one special character.")]
         public string Password { get; set; }
 
         [Required]
         [Compare("Password")]
+        [Display(Name ="confirm password")]
         public string Password2 { get; set; }
 
         public bool IsEmailVerified { get; set; }
@@ -78,4 +82,3 @@ namespace NoteMarketPlaces.Models
         public virtual ICollection<SpamReport> SpamReports { get; set; }
     }
 }
-

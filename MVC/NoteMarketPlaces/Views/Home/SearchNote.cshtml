@@ -3,7 +3,7 @@
 @using NoteMarketPlaces.Models
 @model IPagedList<NoteMarketPlaces.Models.NoteDetail>
 
-@if(ViewBag.IsRegister)
+@if (ViewBag.IsRegister)
 {
     ViewBag.Title = "Search page";
     Layout = "~/Views/Shared/Register.cshtml";
@@ -68,7 +68,14 @@ else
                                     List<string> types = db.Types.Select(m => m.TypeName).ToList();
                                     foreach (var item in types)
                                     {
-                                        <option value="@Url.Action("SearchNote", "Home", new {type=item, university=Request.QueryString["university"],category=Request.QueryString["category"],course=Request.QueryString["course"],country=Request.QueryString["country"],rating=Request.QueryString["rating"], search = Request.QueryString["search"]})">@item</option>
+                                        if (item == @Request.QueryString["type"])
+                                        {
+                                            <option selected value="@Url.Action("SearchNote", "Home", new {type=item, university=Request.QueryString["university"],category=Request.QueryString["category"],course=Request.QueryString["course"],country=Request.QueryString["country"],rating=Request.QueryString["rating"], search = Request.QueryString["search"]})">@item</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@Url.Action("SearchNote", "Home", new {type=item, university=Request.QueryString["university"],category=Request.QueryString["category"],course=Request.QueryString["course"],country=Request.QueryString["country"],rating=Request.QueryString["rating"], search = Request.QueryString["search"]})">@item</option>
+                                        }
                                     }
                                 }
                             </select>
@@ -81,7 +88,14 @@ else
                                     List<string> categories = db.Categories.Select(m => m.Categories).ToList();
                                     foreach (var item in categories)
                                     {
-                                        <option value="@Url.Action("SearchNote", "Home", new {category=item, university=Request.QueryString["university"],type=Request.QueryString["type"],course=Request.QueryString["course"],country=Request.QueryString["country"],rating=Request.QueryString["rating"], search = Request.QueryString["search"]})">@item</option>
+                                        if (item == @Request.QueryString["category"])
+                                        {
+                                            <option selected value="@Url.Action("SearchNote", "Home", new { category = item, university = Request.QueryString["university"], type = Request.QueryString["type"], course = Request.QueryString["course"], country = Request.QueryString["country"], rating = Request.QueryString["rating"], search = Request.QueryString["search"] })">@item</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@Url.Action("SearchNote", "Home", new { category = item, university = Request.QueryString["university"], type = Request.QueryString["type"], course = Request.QueryString["course"], country = Request.QueryString["country"], rating = Request.QueryString["rating"], search = Request.QueryString["search"] })">@item</option>
+                                        }
                                     }
                                 }
                             </select>
@@ -91,12 +105,22 @@ else
                             <select class="form-control inputselect" name="university" id="university" onchange="location.href=this.value">
                                 <option value="@Url.Action("SearchNote", "Home", new {university="", type=Request.QueryString["type"],category=Request.QueryString["category"],course=Request.QueryString["course"],country=Request.QueryString["country"],rating=Request.QueryString["rating"], search = Request.QueryString["search"]})">Select university</option>
                                 @{
-                                    List<string> university = db.NoteDetails.Select(m => m.InstitutionName).ToList();
+                                    List<string> university = db.NoteDetails.Select(m => m.InstitutionName).Distinct().ToList();
                                     foreach (var item in university)
                                     {
-                                        <option value="@Url.Action("SearchNote", "Home", new {university=item, type=Request.QueryString["type"],category=Request.QueryString["category"],course=Request.QueryString["course"],country=Request.QueryString["country"],rating=Request.QueryString["rating"], search = Request.QueryString["search"]})">@item</option>
+                                        if (item != null)
+                                        {
+                                            if (item == @Request.QueryString["university"])
+                                            {
+                                            <option selected value="@Url.Action("SearchNote", "Home", new { university = item, type = Request.QueryString["type"], category = Request.QueryString["category"], course = Request.QueryString["course"], country = Request.QueryString["country"], rating = Request.QueryString["rating"], search = Request.QueryString["search"] })">@item</option>
+                                            }
+                                            else
+                                            {
+                                            <option value="@Url.Action("SearchNote", "Home", new { university = item, type = Request.QueryString["type"], category = Request.QueryString["category"], course = Request.QueryString["course"], country = Request.QueryString["country"], rating = Request.QueryString["rating"], search = Request.QueryString["search"] })">@item</option>
+                                                }
+                                            }
+                                        }
                                     }
-                                }
                             </select>
 
                         </div>
@@ -107,9 +131,19 @@ else
                                     List<string> course = db.NoteDetails.Select(m => m.Course).Distinct().ToList();
                                     foreach (var item in course)
                                     {
-                                        <option value="@Url.Action("SearchNote", "Home", new {course=item, type=Request.QueryString["type"],category=Request.QueryString["category"],university=Request.QueryString["university"],country=Request.QueryString["country"],rating=Request.QueryString["rating"], search = Request.QueryString["search"]})">@item</option>
+                                        if (item != null)
+                                        {
+                                            if (item == @Request.QueryString["course"])
+                                            {
+                                            <option selected value="@Url.Action("SearchNote", "Home", new { course = item, type = Request.QueryString["type"], category = Request.QueryString["category"], university = Request.QueryString["university"], country = Request.QueryString["country"], rating = Request.QueryString["rating"], search = Request.QueryString["search"] })">@item</option>
+                                            }
+                                            else
+                                            {
+                                            <option value="@Url.Action("SearchNote", "Home", new { course = item, type = Request.QueryString["type"], category = Request.QueryString["category"], university = Request.QueryString["university"], country = Request.QueryString["country"], rating = Request.QueryString["rating"], search = Request.QueryString["search"] })">@item</option>
+                                                }
+                                            }
+                                        }
                                     }
-                                }
                             </select>
 
                         </div>
@@ -121,7 +155,14 @@ else
                                     List<string> countries = db.Countries.Select(m => m.CountryName).Distinct().ToList();
                                     foreach (var item in countries)
                                     {
-                                        <option value="@Url.Action("SearchNote", "Home", new {country=item, type=Request.QueryString["type"],category=Request.QueryString["category"],university=Request.QueryString["university"],course=Request.QueryString["course"],rating=Request.QueryString["rating"], search = Request.QueryString["search"]})">@item</option>
+                                        if (item == @Request.QueryString["country"])
+                                        {
+                                            <option selected value="@Url.Action("SearchNote", "Home", new { country = item, type = Request.QueryString["type"], category = Request.QueryString["category"], university = Request.QueryString["university"], course = Request.QueryString["course"], rating = Request.QueryString["rating"], search = Request.QueryString["search"] })">@item</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@Url.Action("SearchNote", "Home", new { country = item, type = Request.QueryString["type"], category = Request.QueryString["category"], university = Request.QueryString["university"], course = Request.QueryString["course"], rating = Request.QueryString["rating"], search = Request.QueryString["search"] })">@item</option>
+                                        }
                                     }
                                 }
                             </select>
@@ -132,7 +173,14 @@ else
                                 <option value="@Url.Action("SearchNote", "Home", new {rating="", type=Request.QueryString["type"],category=Request.QueryString["category"],university=Request.QueryString["university"],course=Request.QueryString["course"],country=Request.QueryString["country"],search = Request.QueryString["search"]})">Select rating</option>
                                 @for (int i = 1; i <= 5; i++)
                                 {
-                                    <option value="@Url.Action("SearchNote", "Home", new {rating=i, type=Request.QueryString["type"],category=Request.QueryString["category"],university=Request.QueryString["university"],course=Request.QueryString["course"],country=Request.QueryString["country"],search = Request.QueryString["search"]})">@i+</option>
+                                    if (i.ToString().Equals(@Request.QueryString["rating"]))
+                                    {
+                                        <option selected value="@Url.Action("SearchNote", "Home", new { rating = i, type = Request.QueryString["type"], category = Request.QueryString["category"], university = Request.QueryString["university"], course = Request.QueryString["course"], country = Request.QueryString["country"], search = Request.QueryString["search"] })">@i+</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@Url.Action("SearchNote", "Home", new { rating = i, type = Request.QueryString["type"], category = Request.QueryString["category"], university = Request.QueryString["university"], course = Request.QueryString["course"], country = Request.QueryString["country"], search = Request.QueryString["search"] })">@i+</option>
+                                    }
                                 }
                             </select>
 
@@ -140,7 +188,7 @@ else
                     </div>
                 </div>
             </div>
-            
+
 
         </div>
     </section>
@@ -149,7 +197,14 @@ else
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h3>Total <span>@ViewBag.noteCount</span> notes</h3>
+                    @if (@ViewBag.noteCount == 0)
+                    {
+                        <h3>No record Found!</h3>
+                    }
+                    else
+                    {
+                        <h3>Total <span>@ViewBag.noteCount</span> notes</h3>
+                    }
                 </div>
             </div>
             <div class="row">
@@ -161,9 +216,10 @@ else
                     {
                         <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
 
-                            <div class="book-info">
+                            <div class="book-info" style="cursor:pointer" onclick="@("window.location.href = '"+ @Url.Action("NoteDetail","Home",new { noteId = notedetail.NoteID.ToString() } )+"'")">
                                 <!-- Book image -->
-                                <img src="~/Content/images/search/1.jpg" alt="Books" class="img-fluid">
+                                
+                                <img src="~/uploads/BookPicture/@notedetail.BookPicture" alt="Books" class="img-fluid" style="height:200px;width:450px">
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-md-12">
@@ -173,7 +229,7 @@ else
 
                                                 <!-- Book title -->
                                                 <div class="book-title">
-                                                    <h6>@notedetail.Title</h6>
+                                                    <h6 style="cursor:pointer" onclick="@("window.location.href = '"+ @Url.Action("NoteDetail","Home",new { noteId = notedetail.NoteID.ToString() } )+"'")">@notedetail.Title</h6>
                                                 </div>
                                                 @{
 
@@ -181,31 +237,47 @@ else
                                                     int review = db.NoteReviews.Where(m => m.NoteID == notedetail.NoteID).Count();
                                                 }
                                                 <!-- Sub Info -->
-                                                <div class="sub-info">
+                                            <div class="sub-info">
 
-                                                    <p class="sub-text"><i class="fa fa-university"></i> @notedetail.InstitutionName, @notedetail.Country</p>
-                                                    <p class="sub-text"><i class="fa fa-book"></i> @notedetail.NumberOfPages</p>
-                                                    <p class="sub-text"><i class="fa fa-university"></i>@notedetail.CreatedDate.Value.ToString("ddd, MMMM dd yyyy")</p>
+                                                <p class="sub-text"><i class="fa fa-university"></i> @notedetail.InstitutionName, @notedetail.Country</p>
+                                                <p class="sub-text"><i class="fa fa-book"></i> @notedetail.NumberOfPages</p>
+                                                <p class="sub-text"><i class="fa fa-university"></i> @notedetail.CreatedDate.Value.ToString("ddd, MMM dd yyyy")</p>
+                                                @if (spam != 0)
+                                                {
                                                     <p class="inappropriate-mark"><i class="fa fa-flag"></i><span> @spam Users marked this note inappropriate</span></p>
-
+                                                }
+                                                else
+                                                {
+                                                    <p class="inappropriate-mark"><i class="fa fa-flag"></i></p>
+                                                }
                                                 </div>
 
                                                 <!-- Ratings -->
                                                 <div class="row">
                                                     <div class="col-sm-12 col-md-12 col-xl-7 col-lg-8">
-                                                        <div class="rate">
+                                                        <div class="rate-fa">
+                                                            @{
+                                                                   int avg = 0;
+                                                                var abc = db.NoteReviews.Where(m => m.NoteID == notedetail.NoteID);
+                                                                if (abc != null)
+                                                                {
+                                                                    var count = abc.ToList().Count();
+                                                                    if (count != 0)
+                                                                    {
+                                                                        avg = abc.ToList().Sum(m => m.Rating) / count;
+                                                                    }
 
-                                                            <input type="radio" id="star5" name="rate" value="5" />
-                                                            <label for="star5" title="text">5 stars</label>
-                                                            <input type="radio" id="star4" name="rate" value="4" />
-                                                            <label for="star4" title="text">4 stars</label>
-                                                            <input type="radio" id="star3" name="rate" value="3" />
-                                                            <label for="star3" title="text">3 stars</label>
-                                                            <input type="radio" id="star2" name="rate" value="2" />
-                                                            <label for="star2" title="text">2 stars</label>
-                                                            <input type="radio" id="star1" name="rate" value="1" />
-                                                            <label for="star1" title="text">1 star</label>
+                                                                }
+                                                                for (int i = 0; i < avg; i++)
+                                                                {
+                                                                    <i><i class="fa fa-star giverate"></i></i>
+                                                                }
+                                                                for (int i = 0; i < (5 - avg); i++)
+                                                                {
+                                                                    <i><i class="fa fa-star"></i></i>
+                                                                }
 
+                                                            }
                                                         </div>
 
                                                     </div>
@@ -236,7 +308,7 @@ else
 {
        Display = PagedListDisplayMode.IfNeeded,
        ContainerDivClasses = null,
-       LiElementClasses = new string[] { "page-item" },
+       LiElementClasses = new string[] { "page-item1" },
        UlElementClasses = new string[] { "pagination justify-content-center" },
        LinkToNextPageFormat = "<i class='fa fa-chevron-right'></i>",
        LinkToPreviousPageFormat = "<i class='fa fa-chevron-left'></i>",

@@ -170,6 +170,7 @@
     <EntitySetMapping Name="NoteRequests">
       <EntityTypeMapping TypeName="NoteMarketPlaceModel.NoteRequest">
         <MappingFragment StoreEntitySet="NoteRequest">
+          <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="BuyerID" ColumnName="BuyerID" />
           <ScalarProperty Name="SellerID" ColumnName="SellerID" />
           <ScalarProperty Name="NoteID" ColumnName="NoteID" />
@@ -181,6 +182,7 @@
     <EntitySetMapping Name="NoteReviews">
       <EntityTypeMapping TypeName="NoteMarketPlaceModel.NoteReview">
         <MappingFragment StoreEntitySet="NoteReview">
+          <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="NoteID" ColumnName="NoteID" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
@@ -197,6 +199,7 @@
     <EntitySetMapping Name="RejectedNotes">
       <EntityTypeMapping TypeName="NoteMarketPlaceModel.RejectedNote">
         <MappingFragment StoreEntitySet="RejectedNote">
+          <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="NoteID" ColumnName="NoteID" />
           <ScalarProperty Name="Remark" ColumnName="Remark" />
@@ -210,6 +213,7 @@
     <EntitySetMapping Name="SpamReports">
       <EntityTypeMapping TypeName="NoteMarketPlaceModel.SpamReport">
         <MappingFragment StoreEntitySet="SpamReport">
+          <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="NoteID" ColumnName="NoteID" />
           <ScalarProperty Name="Remark" ColumnName="Remark" />

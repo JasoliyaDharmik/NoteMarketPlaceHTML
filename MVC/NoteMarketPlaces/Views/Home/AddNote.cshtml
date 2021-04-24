@@ -1,0 +1,430 @@
+﻿@model NoteMarketPlaces.Models.NoteDetail
+
+@{
+    ViewBag.Title = "AddNote";
+    Layout = "~/Views/Shared/Register.cshtml";
+}
+
+    <section class="setfooter">
+        <!-- First Section -->
+        <section>
+            <div id="user-profile-img">
+                <div class="centerh2">
+
+                    <h2>Add Notes</h2>
+
+                </div>
+            </div>
+        </section>
+
+        <form class="user-details-form" method="post" enctype = "multipart/form-data">
+
+            <!-- Second Section -->
+            <section id="basic-profile-details" class="user-profile content-box-md">
+                <div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="head">
+                                    <h3>Basic Note Details</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+
+                                    <div class="col-md-6 col-sm-6">
+                                        <!-- First Name -->
+                                        <div class="form-group">
+                                            <label class="mylabel">Title *</label>
+                                            @Html.TextBoxFor(m => m.Title, new { @class = "form-control InputEmail1", @placeholder = "Enter your Notes title" })
+                                            @Html.ValidationMessageFor(m => m.Title)
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <!-- Last Name -->
+                                        <div class="form-group">
+                                            <label class="mylabel" for="InputEmail1">Category *</label>
+                                            <div class="wrapper">
+                                                <select name="Category" class="form-control inputselect">
+                                                    <option value="">Select Your category</option>
+                                                    @foreach (var item in ViewBag.category)
+                                                    {
+                                                        if (Model.Category != null)
+                                                        {
+                                                            if (Model.Category.Equals(item))
+                                                            {
+                                                                <option value="@item" selected>@item</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@item">@item</option>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@item">@item</option>
+                                                        }
+
+                                                    }
+                                                </select>
+                                            </div>
+                                            @Html.ValidationMessageFor(m => m.Category)
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-md-6 col-sm-6">
+                                        <!-- Email -->
+                                        <div class="form-group">
+                                            <div class="upload-profile-picture">
+                                                <label class="mylabel" for="InputEmail1">Display Picture</label>
+
+
+                                                <input type="file" accept="image/*" name="FileBookPicture" class="form-control InputEmail1" aria-describedby="emailHelp">
+                                                <div class="uploadmypic text-center">
+                                                    <img class="img-fluid" src="~/content/images/user-profile/upload.png">
+                                                    <h6>Upload a picture</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-6">
+                                        <!-- DOB -->
+                                        <div class="form-group">
+                                            <div class="upload-profile-picture">
+                                                <label class="mylabel" for="InputEmail1">Upload Notes *</label>
+
+
+                                                <input type="file" accept="application/pdf" name="FileUploadNote" class="form-control InputEmail1" aria-describedby="emailHelp">
+                                                
+                                                <div class="uploadmypic text-center">
+                                                    <img class="img-fluid" src="~/content/images/user-profile/upload.png">
+                                                    <h6>Upload Your Notes</h6>
+                                                </div>
+                                                <div>
+                                                    @Html.ValidationMessageFor(m => m.FileUploadNote)
+                                                    @if (ViewBag.fileMsg != null)
+                                                    {
+                                                        <p class="field-validation-error">@ViewBag.fileMsg</p>
+                                                    }
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6">
+                                        <!-- Gender -->
+                                        <div class="form-group">
+                                            <label class="mylabel">Type</label>
+                                            <!-- Drop down arrow icon -->
+                                            <div class="wrapper">
+                                                <select name="NoteType" class="form-control inputselect">
+                                                    <option value="">Select Your Mode Type</option>
+                                                    @foreach (var item in ViewBag.type)
+                                                    {
+                                                        if (Model.NoteType != null)
+                                                        {
+                                                            if (Model.NoteType.Equals(item))
+                                                            {
+                                                                <option value="@item" selected>@item</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@item">@item</option>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@item">@item</option>
+                                                        }
+
+                                                    }
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+
+                                        <!-- Phone Number -->
+                                        <div class="form-group">
+                                            <label class="mylabel">Number of Pages</label>
+                                            @Html.TextBoxFor(m => m.NumberOfPages, new { @class = "form-control InputEmail1", @placeholder = "Ente number of note pages" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Upload a Picture -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="textarea-input">
+                                                <label class="mylabel" for="InputEmail1">Description *</label>
+                                                @Html.TextAreaFor(m => m.NotesDescription, new { @placeholder = "Enter your description ", @class = "form-control InputEmail1" })
+                                                @Html.ValidationMessageFor(m => m.NotesDescription)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            <!-- Second Section Ends-->
+            <!-- Forth Section -->
+            <section id="study-details" class="user-profile content-box-md">
+                <div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="head">
+                                    <h3>Institution Information</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <div class="row">
+
+                                    <div class="col-md-6 col-sm-6">
+                                        <!-- University -->
+                                        <div class="form-group">
+                                            <label class="mylabel">Country</label>
+                                            <div class="wrapper">
+                                                <select name="Country" class="form-control inputselect">
+                                                    <option value="">Select Your Country</option>
+                                                    @foreach (var item in ViewBag.country)
+                                                    {
+                                                        if (Model.Country != null)
+                                                        {
+                                                            if (Model.Country.Equals(item))
+                                                            {
+                                                                <option value="@item" selected>@item</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@item">@item</option>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@item">@item</option>
+                                                        }
+
+                                                    }
+                                                </select>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <!-- College -->
+                                        <div class="form-group">
+                                            <label class="mylabel" for="InputEmail1">Institution Name</label>
+                                            @Html.TextBoxFor(m => m.InstitutionName, new { @class = "form-control InputEmail1", @placeholder = "Enter your institution name" })
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            <!-- Forth Section Ends-->
+            <!-- Third Section -->
+            <section id="Address-details" class="user-profile content-box-md">
+                <div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="head">
+                                    <h3>Course Details</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <div class="row">
+
+                                    <div class="col-md-6 col-sm-6">
+                                        <!-- Address Line 1 -->
+                                        <div class="form-group">
+                                            <label class="mylabel">Course Name</label>
+                                            @Html.TextBoxFor(m => m.Course, new { @class = "form-control InputEmail1", @placeholder = "Enter your course name" })
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <!-- Address Line 2 -->
+                                        <div class="form-group">
+                                            <label class="mylabel" for="InputEmail1">Course Code</label>
+                                            @Html.TextBoxFor(m => m.CourseCode, new { @class = "form-control InputEmail1", @placeholder = "Enter your course code" })
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-md-6 col-sm-6">
+                                        <!-- City -->
+                                        <div class="form-group">
+                                            <label class="mylabel" for="InputEmail1">Professor / Lecturer</label>
+                                            @Html.TextBoxFor(m => m.Professor, new { @class = "form-control InputEmail1", @placeholder = "Enter your professor name" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            <!-- Third Section Ends-->
+            <!-- Forth Section -->
+            <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+            
+            <script>
+                $(document).ready(function () {
+                    $('input[type="radio"]').click(function () {
+                        var inputValue = $(this).attr("value");
+                        var targetBox = $("." + inputValue);
+                        $(".abcd").not(targetBox).hide();
+                        $(targetBox).show();
+                    });
+                });
+            </script>
+            <section id="study-details" class="user-profile content-box-md">
+                <div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="head">
+                                    <h3>Selling Information</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6">
+                                <!-- University -->
+                                <div class="form-group">
+                                    <label class="mylabel">Sell For *</label>
+                                    @if (Model.SellPrice == 0 && Model.SellFor != "paid")
+                                    {
+                                        <div class="row giveinnerpadding">
+                                            <div class="col-md-4 col-sm-5 col-4">
+                                                <div class="row">
+                                                    <input name="SellFor" type="radio" value="free" checked="checked" class="form-control InputEmail1">
+                                                    <label class="mylabel">Free</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-5 col-6">
+                                                <div class="row">
+                                                    <input name="SellFor" type="radio" value="paid" class="form-control InputEmail1">
+                                                    <label class="mylabel">Paid</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="row giveinnerpadding">
+                                            <div class="col-md-4 col-sm-5 col-4">
+                                                <div class="row">
+                                                    <input name="SellFor" type="radio" value="free" class="form-control InputEmail1">
+                                                    <label class="mylabel">Free</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-5 col-6">
+                                                <div class="row">
+                                                    <input name="SellFor" type="radio" value="paid" checked="checked" class="form-control InputEmail1">
+                                                    <label class="mylabel">Paid</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+
+                                </div>
+                                @if (Model.SellFor == "paid")
+                                {
+                                    <div class="form-group abcd paid">
+                                        <label class="mylabel" for="InputEmail1">Sell Price *</label>
+                                        @Html.TextBoxFor(m => m.SellPrice, new { @class = "form-control InputEmail1", @placeholder = "Enter your sell price" })
+                                        @Html.ValidationMessageFor(m => m.SellPrice)
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="form-group abcd paid" style="display:none">
+                                        <label class="mylabel" for="InputEmail1">Sell Price *</label>
+                                        @Html.TextBoxFor(m => m.SellPrice, new { @class = "form-control InputEmail1", @placeholder = "Enter your sell price" })
+                                        @Html.ValidationMessageFor(m => m.SellPrice)
+                                    </div>
+                                }
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <div class="upload-profile-picture">
+                                        <label class="mylabel" for="InputEmail1">Notes Preview</label>
+
+                                        <div class="wrapper-image">
+                                            <input type="file"  accept="application/pdf" name="FileNotePreview" class="form-control InputEmail1" aria-describedby="emailHelp">
+                                            <div class="uploadmypic text-center">
+                                                <img class="img-fluid" src="~/content/images/user-profile/upload.png">
+                                                <h6>Upload a file</h6>
+                                            </div>
+                                            <div>
+                                                @if(ViewBag.previewMsg != null)
+                                                {
+                                                    <p class="field-validation-error">@ViewBag.previewMsg</p>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- Login Button -->
+                        <div class="row">
+                            <div class="col-md-3 col-sm-6 col-6">
+                                <input name="NoteID" value="@Model.NoteID" hidden />
+                                <button type="submit" class="btn btn-primary btn-block login-btn text-uppercase text-center" name="submit" value="save" id="mybtn"><b>submit</b></button>
+                            </div>
+                            @if (Model.Status == "draft" || Model.Status == null)
+                            {
+                                <div class="col-md-3 col-sm-6 col-6">
+                                    <button type="submit" class="btn btn-primary btn-block login-btn text-uppercase text-center" name="submit" value="publish" id="mybtn"><b>Publish</b></button>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </form>
+        <!-- Forth Section Ends-->
+    </section>

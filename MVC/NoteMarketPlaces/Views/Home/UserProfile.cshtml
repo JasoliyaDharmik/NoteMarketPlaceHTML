@@ -89,9 +89,33 @@
                                         <!-- Drop down -->
                                         <select name="Gender" class="form-control inputselect">
                                             <option>Select your gender</option>
-                                            <option>Male</option>
-                                            <option>Female</option>
-                                            <option>Other</option>
+                                            @if (Model.Gender != null)
+                                            {
+                                                if (Model.Gender.Equals("Male"))
+                                                {
+                                                    <option value="Male" selected>Male</option>
+                                                    <option value="Female">Female</option>
+                                                    <option value="Other">Other</option>
+                                                }
+                                                else if (Model.Gender.Equals("Female"))
+                                                {
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female" selected>Female</option>
+                                                    <option value="Other">Other</option>
+                                                }
+                                                else if (Model.Gender.Equals("Male"))
+                                                {
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                                    <option value="Other" selected>Other</option>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                                <option value="Other">Other</option>
+                                            }
                                         </select>
                                     </div>
                                 </div>
@@ -109,7 +133,22 @@
                                                                 var list = ViewBag.country as IEnumerable<NoteMarketPlaces.Models.Country>;
                                                                 foreach (var item in list)
                                                                 {
-                                                                    <option>+@item.CountryCode</option>
+                                                                    if (Model.CountryCode != null)
+                                                                    {
+                                                                        if (Model.CountryCode.Equals(item.CountryCode.ToString()))
+                                                                        {
+                                                                            <option selected>+@item.CountryCode</option>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <option>+@item.CountryCode</option>
+                                                                        }
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <option>+@item.CountryCode</option>
+                                                                    }
+
                                                                 }
                                                             }
                                                         </select>
@@ -224,9 +263,24 @@
                                         <!-- Drop down arrow icon -->
                                         <select name="Country" class="form-control inputselect">
                                             @{
-                                                foreach (var item in list)
+                                                var list2 = ViewBag.country as IEnumerable<NoteMarketPlaces.Models.Country>;
+                                                foreach (var item in list2)
                                                 {
-                                                    <option>@item.CountryName</option>
+                                                    if (Model.Country != null)
+                                                    {
+                                                        if (Model.Country.Equals(item.CountryName))
+                                                        {
+                                                            <option selected>@item.CountryName</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option>@item.CountryName</option>
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        <option>@item.CountryName</option>
+                                                    }
                                                 }
                                             }
                                         </select>

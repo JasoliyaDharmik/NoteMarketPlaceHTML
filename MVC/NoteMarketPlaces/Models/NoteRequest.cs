@@ -11,9 +11,10 @@ namespace NoteMarketPlaces.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class NoteRequest
     {
+        public int ID { get; set; }
         public int BuyerID { get; set; }
         public int SellerID { get; set; }
         public int NoteID { get; set; }
@@ -25,9 +26,10 @@ namespace NoteMarketPlaces.Models
         public string SellType { get; set; }
         public bool Status { get; set; }
         public System.DateTime ApprovedDate { get; set; }
-    
+
         public virtual NoteDetail NoteDetail { get; set; }
         public virtual User User { get; set; }
         public virtual User User1 { get; set; }
     }
 }
+

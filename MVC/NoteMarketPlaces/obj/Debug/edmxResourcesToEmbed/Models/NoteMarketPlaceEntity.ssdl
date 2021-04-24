@@ -87,33 +87,22 @@
     <Property Name="ModifiedBy" Type="int" />
     <Property Name="IsActive" Type="bit" Nullable="false" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'NoteMarketPlace.dbo.NoteRequest' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="NoteRequest">
     <Key>
-      <PropertyRef Name="BuyerID" />
-      <PropertyRef Name="SellerID" />
-      <PropertyRef Name="NoteID" />
-      <PropertyRef Name="Status" />
-      <PropertyRef Name="ApprovedDate" />
+      <PropertyRef Name="ID" />
     </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="BuyerID" Type="int" Nullable="false" />
     <Property Name="SellerID" Type="int" Nullable="false" />
     <Property Name="NoteID" Type="int" Nullable="false" />
     <Property Name="Status" Type="bit" Nullable="false" />
     <Property Name="ApprovedDate" Type="datetime" Nullable="false" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'NoteMarketPlace.dbo.NoteReview' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="NoteReview">
     <Key>
-      <PropertyRef Name="NoteID" />
-      <PropertyRef Name="UserID" />
-      <PropertyRef Name="OwnerID" />
-      <PropertyRef Name="Rating" />
-      <PropertyRef Name="Comments" />
-      <PropertyRef Name="IsActive" />
+      <PropertyRef Name="ID" />
     </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="NoteID" Type="int" Nullable="false" />
     <Property Name="UserID" Type="int" Nullable="false" />
     <Property Name="OwnerID" Type="int" Nullable="false" />
@@ -125,14 +114,11 @@ warning 6002: The table/view 'NoteMarketPlace.dbo.NoteReview' does not have a pr
     <Property Name="ModifiedBy" Type="int" />
     <Property Name="IsActive" Type="bit" Nullable="false" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'NoteMarketPlace.dbo.RejectedNote' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="RejectedNote">
     <Key>
-      <PropertyRef Name="UserID" />
-      <PropertyRef Name="NoteID" />
-      <PropertyRef Name="Remark" />
+      <PropertyRef Name="ID" />
     </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UserID" Type="int" Nullable="false" />
     <Property Name="NoteID" Type="int" Nullable="false" />
     <Property Name="Remark" Type="varchar(max)" Nullable="false" />
@@ -141,14 +127,11 @@ warning 6002: The table/view 'NoteMarketPlace.dbo.RejectedNote' does not have a 
     <Property Name="ModifiedDate" Type="datetime" />
     <Property Name="ModifiedBy" Type="int" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'NoteMarketPlace.dbo.SpamReport' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="SpamReport">
     <Key>
-      <PropertyRef Name="UserID" />
-      <PropertyRef Name="NoteID" />
-      <PropertyRef Name="Remark" />
+      <PropertyRef Name="ID" />
     </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UserID" Type="int" Nullable="false" />
     <Property Name="NoteID" Type="int" Nullable="false" />
     <Property Name="Remark" Type="varchar(max)" Nullable="false" />
@@ -377,55 +360,14 @@ warning 6002: The table/view 'NoteMarketPlace.dbo.SpamReport' does not have a pr
     <EntitySet Name="ContactUs" EntityType="Self.ContactUs" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NoteDetail" EntityType="Self.NoteDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NoteRequest" EntityType="Self.NoteRequest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NoteReview" EntityType="Self.NoteReview" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RejectedNote" EntityType="Self.RejectedNote" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SpamReport" EntityType="Self.SpamReport" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SystemConfiguration" EntityType="Self.SystemConfiguration" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserDetail" EntityType="Self.UserDetail" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="NoteRequest" EntityType="Self.NoteRequest" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [NoteRequest].[BuyerID] AS [BuyerID], 
-    [NoteRequest].[SellerID] AS [SellerID], 
-    [NoteRequest].[NoteID] AS [NoteID], 
-    [NoteRequest].[Status] AS [Status], 
-    [NoteRequest].[ApprovedDate] AS [ApprovedDate]
-    FROM [dbo].[NoteRequest] AS [NoteRequest]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="NoteReview" EntityType="Self.NoteReview" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [NoteReview].[NoteID] AS [NoteID], 
-    [NoteReview].[UserID] AS [UserID], 
-    [NoteReview].[OwnerID] AS [OwnerID], 
-    [NoteReview].[Rating] AS [Rating], 
-    [NoteReview].[Comments] AS [Comments], 
-    [NoteReview].[CreatedDate] AS [CreatedDate], 
-    [NoteReview].[CreatedBy] AS [CreatedBy], 
-    [NoteReview].[ModifiedDate] AS [ModifiedDate], 
-    [NoteReview].[ModifiedBy] AS [ModifiedBy], 
-    [NoteReview].[IsActive] AS [IsActive]
-    FROM [dbo].[NoteReview] AS [NoteReview]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="RejectedNote" EntityType="Self.RejectedNote" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [RejectedNote].[UserID] AS [UserID], 
-    [RejectedNote].[NoteID] AS [NoteID], 
-    [RejectedNote].[Remark] AS [Remark], 
-    [RejectedNote].[CreatedDate] AS [CreatedDate], 
-    [RejectedNote].[CreatedBy] AS [CreatedBy], 
-    [RejectedNote].[ModifiedDate] AS [ModifiedDate], 
-    [RejectedNote].[ModifiedBy] AS [ModifiedBy]
-    FROM [dbo].[RejectedNote] AS [RejectedNote]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="SpamReport" EntityType="Self.SpamReport" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [SpamReport].[UserID] AS [UserID], 
-    [SpamReport].[NoteID] AS [NoteID], 
-    [SpamReport].[Remark] AS [Remark], 
-    [SpamReport].[CreatedDate] AS [CreatedDate], 
-    [SpamReport].[CreatedBy] AS [CreatedBy], 
-    [SpamReport].[ModifiedDate] AS [ModifiedDate], 
-    [SpamReport].[ModifiedBy] AS [ModifiedBy]
-    FROM [dbo].[SpamReport] AS [SpamReport]</DefiningQuery>
-    </EntitySet>
     <AssociationSet Name="FK_NoteDetail_Users" Association="Self.FK_NoteDetail_Users">
       <End Role="Users" EntitySet="Users" />
       <End Role="NoteDetail" EntitySet="NoteDetail" />

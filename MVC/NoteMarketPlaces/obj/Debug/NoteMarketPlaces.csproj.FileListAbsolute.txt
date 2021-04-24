@@ -53,6 +53,8 @@ C:\Users\HP\Desktop\NoteMarketPlaces\NoteMarketPlaces\bin\EntityFramework.SqlSer
 C:\Users\HP\Desktop\NoteMarketPlaces\NoteMarketPlaces\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\HP\Desktop\NoteMarketPlaces\NoteMarketPlaces\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\HP\Desktop\NoteMarketPlaces\NoteMarketPlaces\bin\Newtonsoft.Json.dll
+C:\Users\HP\Desktop\NoteMarketPlaces\NoteMarketPlaces\bin\PagedList.dll
+C:\Users\HP\Desktop\NoteMarketPlaces\NoteMarketPlaces\bin\PagedList.Mvc.dll
 C:\Users\HP\Desktop\NoteMarketPlaces\NoteMarketPlaces\bin\System.Web.Helpers.dll
 C:\Users\HP\Desktop\NoteMarketPlaces\NoteMarketPlaces\bin\System.Web.Mvc.dll
 C:\Users\HP\Desktop\NoteMarketPlaces\NoteMarketPlaces\bin\System.Web.Optimization.dll
@@ -63,6 +65,8 @@ C:\Users\HP\Desktop\NoteMarketPlaces\NoteMarketPlaces\bin\System.Web.WebPages.Ra
 C:\Users\HP\Desktop\NoteMarketPlaces\NoteMarketPlaces\bin\WebGrease.dll
 C:\Users\HP\Desktop\NoteMarketPlaces\NoteMarketPlaces\bin\EntityFramework.xml
 C:\Users\HP\Desktop\NoteMarketPlaces\NoteMarketPlaces\bin\EntityFramework.SqlServer.xml
+C:\Users\HP\Desktop\NoteMarketPlaces\NoteMarketPlaces\bin\PagedList.xml
+C:\Users\HP\Desktop\NoteMarketPlaces\NoteMarketPlaces\bin\PagedList.Mvc.xml
 C:\Users\HP\Desktop\NoteMarketPlaces\NoteMarketPlaces\bin\System.Web.Helpers.xml
 C:\Users\HP\Desktop\NoteMarketPlaces\NoteMarketPlaces\bin\System.Web.Mvc.xml
 C:\Users\HP\Desktop\NoteMarketPlaces\NoteMarketPlaces\bin\System.Web.Optimization.xml
@@ -73,12 +77,8 @@ C:\Users\HP\Desktop\NoteMarketPlaces\NoteMarketPlaces\bin\System.Web.WebPages.Ra
 C:\Users\HP\Desktop\NoteMarketPlaces\NoteMarketPlaces\bin\Newtonsoft.Json.xml
 C:\Users\HP\Desktop\NoteMarketPlaces\NoteMarketPlaces\bin\Antlr3.Runtime.pdb
 C:\Users\HP\Desktop\NoteMarketPlaces\NoteMarketPlaces\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\HP\Desktop\NoteMarketPlaces\NoteMarketPlaces\obj\Debug\NoteMarketPlaces.csprojAssemblyReference.cache
 C:\Users\HP\Desktop\NoteMarketPlaces\NoteMarketPlaces\obj\Debug\NoteMarketPlaces.csproj.CoreCompileInputs.cache
 C:\Users\HP\Desktop\NoteMarketPlaces\NoteMarketPlaces\obj\Debug\NoteMarketPlaces.csproj.CopyComplete
 C:\Users\HP\Desktop\NoteMarketPlaces\NoteMarketPlaces\obj\Debug\NoteMarketPlaces.dll
 C:\Users\HP\Desktop\NoteMarketPlaces\NoteMarketPlaces\obj\Debug\NoteMarketPlaces.pdb
-C:\Users\HP\Desktop\NoteMarketPlaces\NoteMarketPlaces\obj\Debug\NoteMarketPlaces.csprojAssemblyReference.cache
-C:\Users\HP\Desktop\NoteMarketPlaces\NoteMarketPlaces\bin\PagedList.dll
-C:\Users\HP\Desktop\NoteMarketPlaces\NoteMarketPlaces\bin\PagedList.Mvc.dll
-C:\Users\HP\Desktop\NoteMarketPlaces\NoteMarketPlaces\bin\PagedList.xml
-C:\Users\HP\Desktop\NoteMarketPlaces\NoteMarketPlaces\bin\PagedList.Mvc.xml

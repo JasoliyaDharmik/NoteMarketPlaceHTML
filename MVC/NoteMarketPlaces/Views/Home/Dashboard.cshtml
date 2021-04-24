@@ -54,7 +54,7 @@
                                 <div class="row">
 
                                     <!-- Number of notes sell -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6" style="cursor: pointer;" onclick="location.href = 'SoldNote'">
                                         <div class="dash-left text-center">
                                             <h4><b>@ViewBag.soldNotes</b></h4>
                                             <p>Number Of Sold Notes</p>
@@ -63,7 +63,7 @@
 
 
                                     <!-- Money Earned  -->
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6" style="cursor: pointer;" onclick="location.href = 'SoldNote'">
                                         <div class="dash-left text-center">
                                             <h4><b>&#36;@ViewBag.moneyEarned</b></h4>
                                             <p>Money Earned</p>
@@ -83,7 +83,7 @@
                                 <div>
 
                                     <!-- Number of notes sell -->
-                                    <div class="dash-right text-center">
+                                    <div class="dash-right text-center" style="cursor: pointer;" onclick="location.href = 'DownloadNote'">
                                         <h4><b>@ViewBag.downloads</b></h4>
                                         <p>My Downloads</p>
                                     </div>
@@ -93,7 +93,7 @@
                             <div class="col-lg-4 col-md-4 col-sm-4 col-7">
 
                                 <!-- Number of notes sell -->
-                                <div class="dash-right text-center">
+                                <div class="dash-right text-center" style="cursor: pointer;" onclick="location.href = 'RejectedNote'">
                                     <h4><b>@ViewBag.rejected</b></h4>
                                     <p>My Rejected Notes</p>
                                 </div>
@@ -102,7 +102,7 @@
                             <div class="col-lg-4 col-md-4 col-sm-4 col-7">
 
                                 <!-- Number of notes sell -->
-                                <div class="dash-right text-center">
+                                <div class="dash-right text-center" style="cursor: pointer;" onclick="location.href = 'BuyerRequest'">
                                     <h4><b>@ViewBag.buyerRequest</b></h4>
                                     <p>Buys Request</p>
                                 </div>

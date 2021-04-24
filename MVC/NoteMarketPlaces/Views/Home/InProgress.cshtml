@@ -4,6 +4,7 @@
 
 @model IPagedList<NoteMarketPlaces.Models.NoteDetail>
 
+
 <section id="dashboard-second-section">
     <div class="container">
         <div class="row">
@@ -12,18 +13,19 @@
             </div>
             <div class="col-12 col-sm-12 col-md-8 col-lg-6">
                 <form>
-                <div class="row justify-content-end">
-                    <div class="wrapper">
-                        <img src="~/content/images/Dashboard/search.jpg" class="searchimage doup">
-                        <input type="text" name="search" value="@Request.QueryString["search"]" class="form-control search-bar InputEmail1" placeholder="Search">
-                        <input name="sortBy" value="@Request.QueryString["sortBy"]" hidden/>
-                        <input name="search2" value="@Request.QueryString["search2"]" hidden/> 
-                        <input name="sortBy2" value="@Request.QueryString["sortBy2"]" hidden/>
+                    <div class="row justify-content-end">
+                        <div class="wrapper">
+                            <img src="~/content/images/Dashboard/search.jpg" class="searchimage doup">
+                            <input type="text" name="search" value="@Request.QueryString["search"]" class="form-control search-bar InputEmail1" placeholder="Search">
+                            <input name="sortBy" value="@Request.QueryString["sortBy"]" hidden />
+                            <input name="search2" value="@Request.QueryString["search2"]" hidden />
+                            <input name="sortBy2" value="@Request.QueryString["sortBy2"]" hidden />
+                            
+                        </div>
+                        <div class="marge-left">
+                            <button type="submit" class="btn text-uppercase text-center" id="mybtn"><b>Search</b></button>
+                        </div>
                     </div>
-                    <div class="marge-left">
-                        <button type="submit" class="btn text-uppercase text-center" id="mybtn"><b>Search</b></button>
-                    </div>
-                </div>
                 </form>
             </div>
         </div>
@@ -33,10 +35,10 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col" class="align-middle" onclick="@("window.location.href = '"+ @Url.Action("Dashboard","Home",new { sortBy = "date", search = Request.QueryString["search"], sortBy2 = Request.QueryString["sortBy2"], search2 = Request.QueryString["search2"] } )+"'")">ADDED DATE</th>
-                                <th scope="col" class="align-middle" onclick="@("window.location.href = '"+ @Url.Action("Dashboard","Home",new { sortBy = "title", search = Request.QueryString["search"], sortBy2 = Request.QueryString["sortBy2"], search2 = Request.QueryString["search2"] } )+"'")">TITLE</th>
-                                <th scope="col" class="align-middle" onclick="@("window.location.href = '"+ @Url.Action("Dashboard","Home", new { sortBy = "category", search = Request.QueryString["search"], sortBy2 = Request.QueryString["sortBy2"], search2 = Request.QueryString["search2"] } )+"'")">CATEGORY</th>
-                                <th scope="col" class="align-middle" onclick="@("window.location.href = '"+ @Url.Action("Dashboard","Home", new { sortBy = "status", search = Request.QueryString["search"], sortBy2 = Request.QueryString["sortBy2"], search2 = Request.QueryString["search2"] } )+"'")">STATUS</th>
+                                <th scope="col" class="align-middle" style="cursor:pointer" onclick="@("window.location.href = '"+ @Url.Action("Dashboard","Home",new { sortBy = "date", search = Request.QueryString["search"], sortBy2 = Request.QueryString["sortBy2"], search2 = Request.QueryString["search2"] } )+"'")">ADDED DATE</th>
+                                <th scope="col" class="align-middle" style="cursor:pointer" onclick="@("window.location.href = '"+ @Url.Action("Dashboard","Home",new { sortBy = "title", search = Request.QueryString["search"], sortBy2 = Request.QueryString["sortBy2"], search2 = Request.QueryString["search2"] } )+"'")">TITLE</th>
+                                <th scope="col" class="align-middle" style="cursor:pointer" onclick="@("window.location.href = '"+ @Url.Action("Dashboard","Home", new { sortBy = "category", search = Request.QueryString["search"], sortBy2 = Request.QueryString["sortBy2"], search2 = Request.QueryString["search2"] } )+"'")">CATEGORY</th>
+                                <th scope="col" class="align-middle" style="cursor:pointer" onclick="@("window.location.href = '"+ @Url.Action("Dashboard","Home", new { sortBy = "status", search = Request.QueryString["search"], sortBy2 = Request.QueryString["sortBy2"], search2 = Request.QueryString["search2"] } )+"'")">STATUS</th>
                                 <th scope="col" class="align-middle">ACTIONS</th>
                             </tr>
                         </thead>
@@ -47,35 +49,36 @@
                             }
                             @foreach (var notes in Model)
                             {
-                               <tr>
-                                        <td class="align-middle">@notes.CreatedDate.Value.ToString("dd/MM/yyyy")</td>
-                                        <td class="align-middle">@notes.Title</td>
-                                        <td class="align-middle">@notes.Category</td>
-                                        <td class="align-middle">@notes.Status</td>
-                                        <td class="align-middle">
-                                            @if (notes.Status == "draft")
-                                            {
-                                                <div class="row">
-                                                    <div class="col-6 col-sm-6 col-md-4 col-lg-3">
-                                                        <img src="~/content/images/Dashboard/edit.png" alt="Edit" onclick="@("window.location.href = '"+ @Url.Action("AddNotes","Home",new { noteId = notes.NoteID.ToString() })+"'")">
-                                                    </div>
-                                                    <div class="col-6 col-sm-6 col-md-4 col-lg-3">
-                                                        <i class="fa fa-trash-alt dowhite dobig" onclick="@("window.location.href = '"+ @Url.Action("Dashboard","Home",new { noteId = notes.NoteID.ToString() })+"'")"></i>
-                                                    </div>
-                                                </div>
-                                            }
-                                            else
-                                            {
-                                                <div class="row text-center">
-                                                    <div class="col-11 col-sm-11 col-md-9 col-lg-7">
-                                                        <img src="~/content/images/Dashboard/eye.png" alt="Edit" class="img-fluid" onclick="@("window.location.href = '"+ @Url.Action("NoteDetails","Home",new { noteId = notes.NoteID.ToString() })+"'")" />
-                                                    </div>
-                                                </div>
-                                            }
-                                        </td>
-                               </tr>
 
-                             }
+                                <tr>
+                                    <td class="align-middle">@notes.CreatedDate.Value.ToString("dd/MM/yyyy")</td>
+                                    <td class="align-middle">@notes.Title</td>
+                                    <td class="align-middle">@notes.Category</td>
+                                    <td class="align-middle">@notes.Status</td>
+                                    <td class="align-middle">
+                                        @if (notes.Status == "draft")
+                                        {
+                                            <div class="row">
+                                                <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+                                                    <img src="~/content/images/Dashboard/edit.png" style="cursor:pointer" alt="Edit" onclick="@("window.location.href = '"+ @Url.Action("AddNote","Home",new { noteId = notes.NoteID.ToString() })+"'")">
+                                                </div>
+                                                <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+                                                    <i class="fa fa-trash-alt dowhite dobig" style="cursor:pointer" onclick="@("window.location.href = '"+ @Url.Action("Dashboard","Home",new { noteId = notes.NoteID.ToString() })+"'")"></i>
+                                                </div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="row text-center">
+                                                <div class="col-11 col-sm-11 col-md-9 col-lg-7">
+                                                    <img src="~/content/images/Dashboard/eye.png" style="cursor:pointer" alt="Edit" class="img-fluid" onclick="@("window.location.href = '"+ @Url.Action("NoteDetail","Home",new { noteId = notes.NoteID.ToString() })+"'")" />
+                                                </div>
+                                            </div>
+                                        }
+                                    </td>
+                                </tr>
+
+                            }
                         </tbody>
                     </table>
 
@@ -88,7 +91,7 @@
 </section>
 
 <!-- Pagination -->
-@Html.PagedListPager(Model, page => Url.Action("Dashboard", new { page, sortBy = Request.QueryString["sortBy"] , search = Request.QueryString["search"] }), new PagedListRenderOptions()
+@Html.PagedListPager(Model, page => Url.Action("Dashboard", new { page, sortBy = Request.QueryString["sortBy"], search = Request.QueryString["search"] }), new PagedListRenderOptions()
 {
        Display = PagedListDisplayMode.IfNeeded,
        ContainerDivClasses = null,

@@ -11,7 +11,9 @@ namespace NoteMarketPlaces.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.Web;
+
     public partial class NoteDetail
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,21 +24,40 @@ namespace NoteMarketPlaces.Models
             this.RejectedNotes = new HashSet<RejectedNote>();
             this.SpamReports = new HashSet<SpamReport>();
         }
-    
+
         public int NoteID { get; set; }
         public int OwnerID { get; set; }
+        public string Publisher{get; set; }
+        public int NumberOfDownload { get; set; }
+
+        [Required]
         public string Title { get; set; }
+
+        [Required]
         public string Category { get; set; }
         public string BookPicture { get; set; }
+
+        public HttpPostedFileBase FileBookPicture { get; set; }
+        public HttpPostedFileBase FileNotePreview { get; set; }
+        public HttpPostedFileBase FileUploadNote { get; set; }
+
+        [Required]
         public string UploadNote { get; set; }
         public string NoteType { get; set; }
+
+        [Required]
+        public string SellFor { get; set; }
         public Nullable<int> NumberOfPages { get; set; }
+
+        [Required]
         public string NotesDescription { get; set; }
         public string InstitutionName { get; set; }
         public string Country { get; set; }
         public string Course { get; set; }
         public string CourseCode { get; set; }
         public string Professor { get; set; }
+
+        [Required]
         public int SellPrice { get; set; }
         public string NotePreview { get; set; }
         public Nullable<int> NoteSize { get; set; }
@@ -47,7 +68,7 @@ namespace NoteMarketPlaces.Models
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public bool IsActive { get; set; }
-    
+
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NoteRequest> NoteRequests { get; set; }
@@ -59,3 +80,4 @@ namespace NoteMarketPlaces.Models
         public virtual ICollection<SpamReport> SpamReports { get; set; }
     }
 }
+

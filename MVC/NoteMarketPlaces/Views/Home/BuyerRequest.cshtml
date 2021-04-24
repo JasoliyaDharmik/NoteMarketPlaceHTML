@@ -24,7 +24,6 @@
                                     <img src="~/content/images/Dashboard/search.jpg" class="searchimage doup">
                                     <input type="text" name="search" value="@Request.QueryString["search"]" class="form-control search-bar InputEmail1" placeholder="Search">
                                     <input name="sortBy" value="@Request.QueryString["sortBy"]" hidden />
-                                
                                     <input type="submit" hidden />
                                 </div>
                                 <div class="marge-left">
@@ -42,13 +41,13 @@
                         <div class="grid-table table-responsive-xl">
                             <table class="table">
                                 <thead>
-                                    <tr>
-                                        <th scope="col" class="align-middle text-center">SR NO.</th>
+                                    <tr style="cursor:pointer">
+                                        <th scope="col" class="align-middle text-center" style="cursor:text">SR NO.</th>
                                         <th scope="col" class="align-middle" onclick="@("window.location.href='" + @Url.Action("BuyerRequest", "Home", new { search = Request.QueryString["search"], sortBy = "title", page = Request.QueryString["page"] }) + "'");">NOTE TITLE</th>
                                         <th scope="col" class="align-middle" onclick="@("window.location.href='" + @Url.Action("BuyerRequest", "Home", new { search = Request.QueryString["search"], sortBy = "category", page = Request.QueryString["page"] }) + "'")">CATEGORY</th>
                                         <th scope="col" class="align-middle" onclick="@("window.location.href='" + @Url.Action("BuyerRequest", "Home", new { search = Request.QueryString["search"], sortBy = "buyer", page = Request.QueryString["page"] }) + "'")">BUYER</th>
                                         <th scope="col" class="align-middle" onclick="@("window.location.href='" + @Url.Action("BuyerRequest", "Home", new { search = Request.QueryString["search"], sortBy = "phoneNumber", page = Request.QueryString["page"] }) + "'")">PHONE NO.</th>
-                                        <th scope="col" class="align-middle">SELL TYPE</th>
+                                        <th scope="col" class="align-middle" style="cursor:text">SELL TYPE</th>
                                         <th scope="col" class="align-middle" onclick="@("window.location.href='" + @Url.Action("BuyerRequest", "Home", new { search = Request.QueryString["search"], sortBy = "price", page = Request.QueryString["page"] }) + "'")">PRICE</th>
                                         <th scope="col" class="align-middle" onclick="@("window.location.href='" + @Url.Action("BuyerRequest", "Home", new { search = Request.QueryString["search"], sortBy = "download", page = Request.QueryString["page"] }) + "'")">DOWNLOADED DATE/TIME</th>
                                         <th scope="col" class="align-middle"></th>
@@ -62,12 +61,20 @@
                                         <tr><td colspan="11" class="align-middle">No Record Found!</td></tr>
                                     }
                                     @{
-                                        int i = 0;
+                                        int i = -1, a;
+                                        if (Request.QueryString["page"] == null || Request.QueryString["page"].AsInt() == 1)
+                                        {
+                                            a = 1;
+                                        }
+                                        else
+                                        {
+                                            a = (Request.QueryString["page"].AsInt() - 1) * 5 + 1;
+                                        }
                                         foreach (var item in Model)
                                         {
-                                            i = i + 1;
+                                            i++;
                                             <tr>
-                                                <td class="align-middle text-center">@i</td>
+                                                <td class="align-middle text-center">@(a + i)</td>
                                                 <td class="align-middle getpurple">@item.NoteTitle </td>
                                                 <td class="align-middle">@item.Category</td>
                                                 <td class="align-middle">@item.BuyerEmailID</td>
@@ -76,17 +83,20 @@
                                                 <td class="align-middle">$@item.Price</td>
                                                 <td class="align-middle">@item.ApprovedDate</td>
                                                 <td class="align-middle">
-                                                    <img  class="dopointer" src="~/content/images/Dashboard/eye.png" alt="view">
+                                                    <img class="dopointer" src="~/content/images/Dashboard/eye.png" style="cursor:pointer" alt="view" onclick="@("window.location.href = '"+ @Url.Action("NoteDetail","Home",new { noteId = item.NoteID.ToString() } )+"'")">
                                                 </td>
                                                 <td class="align-middle">
-                                                    <div class="dropdown">
-                                                        <a type="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <div class="dropdown dopointer">
+                                                        <a id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                             <i class="fas fa-ellipsis-v  dowhite"></i>
                                                         </a>
                                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                                                            <a class="dropdown-item" href="#">Allow Download</a>
+                                                            <a class="dropdown-item">Allow Download</a>
                                                         </div>
                                                     </div>
+                                                </td>
+                                                <td>
+                                                    <a class="dropdown-item" href="@Url.Action("BuyerRequest","Home", new {NoteId = item.NoteID ,search = Request.QueryString["search"], sortBy = "title", page = Request.QueryString["page"]  })">Allow Download</a>
                                                 </td>
                                                 <td></td>
                                             </tr>
@@ -101,7 +111,7 @@
         </section>
 
     </div>
-    @Html.PagedListPager(Model, page => Url.Action("BuyerRequest", new { page, search = Request.QueryString["search"],sortBy = Request.QueryString["sortBy"] }), new PagedListRenderOptions()
+    @Html.PagedListPager(Model, page => Url.Action("BuyerRequest", new { page, search = Request.QueryString["search"], sortBy = Request.QueryString["sortBy"] }), new PagedListRenderOptions()
     {
        Display = PagedListDisplayMode.IfNeeded,
        ContainerDivClasses = null,

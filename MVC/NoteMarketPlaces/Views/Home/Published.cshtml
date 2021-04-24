@@ -35,11 +35,11 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col" class="align-middle" onclick="@("window.location.href = '"+ Url.Action("Dashboard","Home",new { sortBy2 = "date", search2 = Request.QueryString["search2"], sortBy = Request.QueryString["sortBy"], search = Request.QueryString["search"] } )+"'")">ADDED DATE</th>
-                                <th scope="col" class="align-middle" onclick="@("window.location.href = '"+ Url.Action("Dashboard","Home",new { sortBy2 = "title", search2 = Request.QueryString["search2"], sortBy = Request.QueryString["sortBy"], search = Request.QueryString["search"] } )+"'")">TITLE</th>
-                                <th scope="col" class="align-middle" onclick="@("window.location.href = '"+ Url.Action("Dashboard","Home",new { sortBy2 = "category", search2 = Request.QueryString["search2"], sortBy = Request.QueryString["sortBy"], search = Request.QueryString["search"] } )+"'")">CATEGORY</th>
-                                <th scope="col" class="align-middle" onclick="@("window.location.href = '"+ Url.Action("Dashboard","Home",new { sortBy2 = "selltype", search2 = Request.QueryString["search2"], sortBy = Request.QueryString["sortBy"], search = Request.QueryString["search"] } )+"'")">SELL TYPE</th>
-                                <th scope="col" class="align-middle" onclick="@("window.location.href = '"+ Url.Action("Dashboard","Home",new { sortBy2 = "price", search2 = Request.QueryString["search2"], sortBy = Request.QueryString["sortBy"], search = Request.QueryString["search"] } )+"'")">PRICE</th>
+                                <th scope="col" class="align-middle" style = "cursor:pointer" onclick="@("window.location.href = '"+ Url.Action("Dashboard","Home",new { sortBy2 = "date", search2 = Request.QueryString["search2"], sortBy = Request.QueryString["sortBy"], search = Request.QueryString["search"] } )+"'")">ADDED DATE</th>
+                                <th scope="col" class="align-middle" style = "cursor:pointer" onclick="@("window.location.href = '"+ Url.Action("Dashboard","Home",new { sortBy2 = "title", search2 = Request.QueryString["search2"], sortBy = Request.QueryString["sortBy"], search = Request.QueryString["search"] } )+"'")">TITLE</th>
+                                <th scope="col" class="align-middle" style = "cursor:pointer" onclick="@("window.location.href = '"+ Url.Action("Dashboard","Home",new { sortBy2 = "category", search2 = Request.QueryString["search2"], sortBy = Request.QueryString["sortBy"], search = Request.QueryString["search"] } )+"'")">CATEGORY</th>
+                                <th scope="col" class="align-middle" style = "cursor:pointer" onclick="@("window.location.href = '"+ Url.Action("Dashboard","Home",new { sortBy2 = "selltype", search2 = Request.QueryString["search2"], sortBy = Request.QueryString["sortBy"], search = Request.QueryString["search"] } )+"'")">SELL TYPE</th>
+                                <th scope="col" class="align-middle" style = "cursor:pointer" onclick="@("window.location.href = '"+ Url.Action("Dashboard","Home",new { sortBy2 = "price", search2 = Request.QueryString["search2"], sortBy = Request.QueryString["sortBy"], search = Request.QueryString["search"] } )+"'")">PRICE</th>
                                 <th scope="col" class="align-middle">ACTIONS</th>
                             </tr>
                         </thead>
@@ -60,7 +60,7 @@
                                     <td class="align-middle">
                                         <div class="row text-center">
                                             <div class="col-11 col-sm-11 col-md-9 col-lg-7">
-                                                <img src="~/content/images/Dashboard/eye.png" alt="Edit" class="img-fluid" onclick="@("window.location.href = '"+ @Url.Action("NoteDetails","Home",new { noteId = notes.NoteID.ToString() })+"'")" />
+                                                <img src="~/content/images/Dashboard/eye.png" alt="Edit" class="img-fluid" style="cursor:pointer" onclick="@("window.location.href = '"+ @Url.Action("NoteDetail","Home",new { noteId = notes.NoteID.ToString() })+"'")" />
                                             </div>
                                         </div>
                                     </td>
@@ -76,7 +76,7 @@
 </section>
 <!-- Pagination -->
 
-@Html.PagedListPager(Model, page => Url.Action("Dashboard", new { page, sortBy2 = Request.QueryString["sortBy"], search2 = Request.QueryString["search"] }), new PagedListRenderOptions()
+@Html.PagedListPager(Model, page => Url.Action("Dashboard", new { page, sortBy2 = Request.QueryString["sortBy2"], search2 = Request.QueryString["search2"] }), new PagedListRenderOptions()
 {
        Display = PagedListDisplayMode.IfNeeded,
        ContainerDivClasses = null,

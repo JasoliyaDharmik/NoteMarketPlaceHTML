@@ -22,7 +22,7 @@ $(function () {
             $(".navbar-movable").addClass("white-nav-top");
 
             // Show dark logo
-            $(".navbar-movable .navbar-brand img").attr("src", "images/pre-login/Capture.PNG");
+            $(".navbar-movable .navbar-brand img").attr("src", "~/Content/images/pre-login/Capture.png");
 
         } else {
 
@@ -30,7 +30,7 @@ $(function () {
             $(".navbar-movable").removeClass("white-nav-top");
 
             // Show logo
-            $(".navbar-movable .navbar-brand img").attr("src", "images/pre-login/top-logo.png");
+            $(".navbar-movable .navbar-brand img").attr("src", "~/Content/images/pre-login/top-logo.png");
 
         }
     }
@@ -88,11 +88,7 @@ $(".pass-eye").click(function () {
 /* ==================================
             Drop-down Menu
 ====================================*/
-//$(document).ready(function () {
-//    $('.dropdown').click(function () {
-//        $('.dropdown-menu').toggleClass('show hide');
-//    });
-//});
+
 $('#myModal').on('shown.bs.modal', function () {
     $('#myInput').trigger('focus')
 });

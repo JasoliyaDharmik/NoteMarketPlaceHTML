@@ -1,0 +1,236 @@
+﻿@model NoteMarketPlaces.Models.NoteDetail
+
+@{
+    ViewBag.Title = "Note Details";
+    Layout = "~/Views/Shared/AdminRegister.cshtml";
+}
+
+<section class="setfooter">
+    <!-- Third Section -->
+    <section id="notes-details-first-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-12 col-sm-12">
+                    <div class="head">
+                        <h3>Notes Details</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-7">
+                            <div class="row docenter">
+                                <div class="col-12 col-sm-5 col-md-5 col-lg-5">
+                                    @if (Model.BookPicture != null)
+                                    {
+                                        <img class="img-fluid" src="~/Uploads/BookPicture/@Model.BookPicture">
+                                    }
+                                    else
+                                    {
+                                        <img class="img-fluid" src="~/Uploads/BookPicture/default.jpg">
+                                    }
+                                </div>
+                                <div class="col-12 col-sm-7 col-md-7 col-lg-7">
+
+                                    <h2>@Model.Title</h2>
+                                    <h5>
+                                        @Model.Category
+                                    </h5>
+                                    <p class="text-left">@Model.NotesDescription</p>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-7 col-lg-9">
+                                               <button class="btn text-uppercase text-center" id="mybtn" onclick="@("window.location.href='" + @Url.Action("DownloadFile","Home",new { filename = Model.UploadNote } )+ "'");"><b>Download</b></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-5 margin-top">
+                            <div class="row">
+                                <div class="col-5 col-sm-5 col-md-5 left-side-note">
+                                    <h5>Institution:</h5>
+                                    <h5>Country:</h5>
+                                    <h5>Course Name:</h5>
+                                    <h5>Course Code:</h5>
+                                    <h5>Professor:</h5>
+                                    <h5>Number of Pages:</h5>
+                                    <h5>Approved Date:</h5>
+                                    <h5>Rating:</h5>
+                                </div>
+                                <div class="col-7 col-sm-7 col-md-7 right-side-note text-right">
+                                    @if (Model.InstitutionName == null)
+                                    {
+                                        <h5>&nbsp;-&nbsp;</h5>
+                                    }
+                                    <h5>@Model.InstitutionName</h5>
+
+                                    @if (Model.Country == null)
+                                    {
+                                        <h5>&nbsp;-&nbsp;</h5>
+                                    }
+                                    <h5>@Model.Country</h5>
+
+                                    @if (Model.Course == null)
+                                    {
+                                        <h5>&nbsp;-&nbsp;</h5>
+                                    }
+                                    <h5>@Model.Course</h5>
+
+                                    @if (Model.CourseCode == null)
+                                    {
+                                        <h5>&nbsp;-&nbsp;</h5>
+                                    }
+                                    <h5>@Model.CourseCode</h5>
+
+                                    @if (Model.Professor == null)
+                                    {
+                                        <h5>&nbsp;-&nbsp;</h5>
+                                    }
+                                    else
+                                    {
+                                        <h5>Mr. @Model.Professor</h5>
+                                    }
+
+                                    @if (Model.NumberOfPages == null)
+                                    {
+                                        <h5>&nbsp;-&nbsp;</h5>
+                                    }
+                                    <h5>@Model.NumberOfPages</h5>
+
+                                    @if (Model.PublishedDate != null)
+                                    {
+                                        <h5>@Model.PublishedDate.Value.ToString("MMMM dd yyyy")</h5>
+                                    }
+                                    else
+                                    {
+                                        <h5>Not Approved</h5>
+                                    }
+
+                                    <div class="rate-fa">
+                                        @{
+                                            for (int i = 0; i < ViewBag.Rating; i++)
+                                            {
+                                                <i><i class="fa fa-star giverate"></i></i>
+                                            }
+                                            for (int i = 0; i < (5 - ViewBag.Rating); i++)
+                                            {
+                                                <i class="fa fa-star"></i>
+                                            }
+                                        }
+                                        <i class="numofreview">@ViewBag.Review Reviews</i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="inappropriate">
+                                @if (ViewBag.spam != 0)
+                                {
+                                    <p>@ViewBag.Spam User marked this note as inappropriate</p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Third Section Ends-->
+
+    <div class="content-box-md">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section id="notes-details-second-section">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-12 col-sm-12 col-md-12 col-lg-5">
+                    <div class="head">
+                        <h3>Notes Preview</h3>
+                        @{
+                            string preview = "";
+                            if (Model.NotePreview != null)
+                            {
+                                preview = "https://localhost:44365/Uploads/NotePreview/" + Model.NotePreview; ;
+                            }
+                            else
+                            {
+                                preview = "https://localhost:44365/Uploads/Notes/" + Model.UploadNote;
+                            }
+                        }
+                    </div>
+                    <div id="Iframe-Cicis-Menu-To-Go" class="set-margin-cicis-menu-to-go set-padding-cicis-menu-to-go set-border-cicis-menu-to-go set-box-shadow-cicis-menu-to-go center-block-horiz">
+                        <div class="responsive-wrapper responsive-wrapper-padding-bottom-90pct" style="-webkit-overflow-scrolling: touch; overflow: auto;">
+                            <iframe src="@preview" class="responsive-iframe" title="description">
+                                <p>Your web browser doesn't have a PDF plugin.Instead you can <a href=@preview>click here to download the PDF file.</a></p>
+                            </iframe>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-12 col-lg-7 margin-top">
+                    <div class="head">
+                        <h3>Customer Reviews</h3>
+                    </div>
+                    <div class="customer-reviews">
+                        @{
+                            var abc = ViewBag.Customer as IEnumerable<NoteMarketPlaces.Models.NoteReview>;
+                            if (abc == null || abc.Count() == 0)
+                            {
+                                <h5>No record found!</h5>
+                            }
+                            else
+                            {
+                                foreach (var customer in ViewBag.Customer)
+                                {
+                                    <div class="row">
+                                        <div class="col-3 col-sm-3 col-md-2">
+                                            <img src="~/Uploads/ProfilePicture/@customer.UserProfile" alt="user" class="img-fluid rounded-circle">
+                                        </div>
+                                        <div class="col-9 col-sm-9 col-md-10">
+                                            <div class="row">
+                                                <div class="col-10">
+                                                    <h5>@customer.FullName</h5>
+                                                    <div class="rate-fa">
+                                                        @for (int i = 0; i < customer.Rating; i++)
+                                                        {
+                                                            <i><i class="fa fa-star giverate"></i></i>
+                                                        }
+                                                        @for (int i = 0; i < (5 - customer.Rating); i++)
+                                                        {
+                                                            <i class="fa fa-star"></i>
+                                                        }
+                                                    </div>
+                                                </div>
+                                                <div class="text-right col-2" style="cursor:pointer" onclick="@("window.location.href='" + @Url.Action("DeleteReview","Admin", new { noteId = customer.NoteID.ToString(), userId = customer.UserID.ToString()}) +"'");">
+                                                    <i class="fa fa-trash-alt dowhite dobig"></i>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p>@customer.Comments</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <hr>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</section>

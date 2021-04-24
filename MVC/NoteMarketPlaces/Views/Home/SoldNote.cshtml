@@ -1,0 +1,123 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@using NoteMarketPlaces.Models
+@model IPagedList<NoteMarketPlaces.Models.NoteRequest>
+
+@{
+    ViewBag.Title = "Sold Notes";
+    Layout = "~/Views/Shared/Register.cshtml";
+}
+
+<section class="setfooter">
+    <div class="outerbox">
+        <section id="dashboard-second-section" class="mydownload-margin">
+            <div class="container">
+                <div class="row top-table">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                        <h3>My Sold Notes</h3>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                        <form>
+                            <div class="row justify-content-end">
+                                <div class="wrapper">
+                                    <img src="~/content/images/Dashboard/search.jpg" class="searchimage doup">
+                                    <input type="text" name="search" value="@Request.QueryString["search"]" class="form-control search-bar InputEmail1" placeholder="Search">
+                                    <input name="sortBy" value="@Request.QueryString["sortBy"]" hidden />
+                                    <input type="submit" hidden />
+                                </div>
+                                <div class="marge-left">
+                                    <button type="submit" class="btn text-uppercase text-center" id="mybtn"><b>Search</b></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="grid-table table-responsive-xl">
+                            <table class="table">
+                                <thead>
+                                    <tr style="cursor:pointer">
+                                        <th scope="col" class="align-middle text-center" style="cursor:text">SR NO.</th>
+                                        <th scope="col" class="align-middle" onclick="@("window.location.href='" + @Url.Action("SoldNote", "Home", new { search = Request.QueryString["search"], sortBy = "title", page = Request.QueryString["page"] }) + "'");">NOTE TITLE</th>
+                                        <th scope="col" class="align-middle" onclick="@("window.location.href='" + @Url.Action("SoldNote", "Home", new { search = Request.QueryString["search"], sortBy = "category", page = Request.QueryString["page"] }) + "'");">CATEGORY</th>
+                                        <th scope="col" class="align-middle" onclick="@("window.location.href='" + @Url.Action("SoldNote", "Home", new { search = Request.QueryString["search"], sortBy = "buyer", page = Request.QueryString["page"] }) + "'");">BUYER</th>
+                                        <th scope="col" class="align-middle" style="cursor:text">SELL TYPE</th>
+                                        <th scope="col" class="align-middle" onclick="@("window.location.href='" + @Url.Action("SoldNote", "Home", new { search = Request.QueryString["search"], sortBy = "price", page = Request.QueryString["page"] }) + "'");">PRICE</th>
+                                        <th scope="col" class="align-middle" onclick="@("window.location.href='" + @Url.Action("SoldNote", "Home", new { search = Request.QueryString["search"], sortBy = "download", page = Request.QueryString["page"] }) + "'");">DOWNLOADED DATE/TIME</th>
+                                        <th scope="col" class="align-middle"></th>
+                                        <th scope="col" class="align-middle"></th>
+                                        <th scope="col" class="align-middle"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.Count == 0)
+                                    {
+                                        <tr><td colspan="10" class="align-middle">No Record Found!</td></tr>
+                                    }
+                                    @{
+                                        int i = -1, a;
+                                        if (Request.QueryString["page"] == null || Request.QueryString["page"].AsInt() == 1)
+                                        {
+                                            a = 1;
+                                        }
+                                        else
+                                        {
+                                            a = (Request.QueryString["page"].AsInt() - 1) * 5 + 1;
+                                        }
+                                        foreach (var notes in Model)
+                                        {
+                                            i++;
+
+                                            <tr>
+                                                <td class="align-middle text-center">@(a + i)</td>
+                                                <td class="align-middle getpurple">@notes.NoteTitle</td>
+                                                <td class="align-middle">@notes.Category</td>
+                                                <td class="align-middle">@notes.BuyerEmailID</td>
+                                                <td class="align-middle">@notes.SellType</td>
+                                                <td class="align-middle">$@notes.Price</td>
+                                                <td class="align-middle">@notes.ApprovedDate</td>
+                                                <td class="align-middle">
+                                                    <img src="~/content/images/Dashboard/eye.png" alt="view" style="cursor:pointer" onclick="@("window.location.href = '"+ @Url.Action("NoteDetail","Home",new { noteId = notes.NoteID.ToString() } )+"'")">
+                                                </td>
+                                                <td class="align-middle">
+                                                    <div class="dropdown">
+                                                        <a id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            <i class="fas fa-ellipsis-v  dowhite"></i>
+                                                        </a>
+                                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                                                            <a class="dropdown-item">Download Notes</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <a class="dropdown-item" href="@Url.Action("SoldNote","Home", new {noteId = notes.NoteID ,search = Request.QueryString["search"], sortBy = "title", page = Request.QueryString["page"]  })">Download Notes</a>
+                                                </td>
+                                                <td></td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Pagination -->
+    @Html.PagedListPager(Model, page => Url.Action("DownloadNote", new { page, search = Request.QueryString["search"], sortBy = Request.QueryString["sortBy"] }), new PagedListRenderOptions()
+   {
+  Display = PagedListDisplayMode.IfNeeded,
+  ContainerDivClasses = null,
+  LiElementClasses = new string[] { "page-item" },
+  UlElementClasses = new string[] { "pagination justify-content-center" },
+  LinkToNextPageFormat = "<i class='fa fa-chevron-right'></i>",
+  LinkToPreviousPageFormat = "<i class='fa fa-chevron-left'></i>",
+  MaximumPageNumbersToDisplay = 5,
+  DisplayEllipsesWhenNotShowingAllPageNumbers = false,
+  DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+  DisplayLinkToLastPage = PagedListDisplayMode.Never
+})
+</section>
