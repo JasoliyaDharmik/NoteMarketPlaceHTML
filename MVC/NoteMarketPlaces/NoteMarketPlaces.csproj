@@ -141,60 +141,65 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AdminDetail.cs">
-      <DependentUpon>NoteMarketPlaceEntity.tt</DependentUpon>
+      <DependentUpon>NoteMarketPlace.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Admin_Dashboard.cs" />
+    <Compile Include="Models\Admin_Download.cs" />
     <Compile Include="Models\Category.cs">
-      <DependentUpon>NoteMarketPlaceEntity.tt</DependentUpon>
+      <DependentUpon>NoteMarketPlace.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ChangePassword.cs" />
     <Compile Include="Models\ContactU.cs">
-      <DependentUpon>NoteMarketPlaceEntity.tt</DependentUpon>
+      <DependentUpon>NoteMarketPlace.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Country.cs">
-      <DependentUpon>NoteMarketPlaceEntity.tt</DependentUpon>
+      <DependentUpon>NoteMarketPlace.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Download.cs" />
+    <Compile Include="Models\Member.cs" />
+    <Compile Include="Models\MemberDetail.cs" />
     <Compile Include="Models\NoteDetail.cs">
-      <DependentUpon>NoteMarketPlaceEntity.tt</DependentUpon>
+      <DependentUpon>NoteMarketPlace.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\NoteMarketPlaceEntity.Context.cs">
-      <DependentUpon>NoteMarketPlaceEntity.Context.tt</DependentUpon>
+    <Compile Include="Models\NoteMarketPlace.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>NoteMarketPlace.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\NoteMarketPlaceEntity.cs">
-      <DependentUpon>NoteMarketPlaceEntity.tt</DependentUpon>
+    <Compile Include="Models\NoteMarketPlace.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>NoteMarketPlace.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\NoteMarketPlaceEntity.Designer.cs">
-      <DependentUpon>NoteMarketPlaceEntity.edmx</DependentUpon>
+    <Compile Include="Models\NoteMarketPlace.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>NoteMarketPlace.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\NoteRequest.cs">
-      <DependentUpon>NoteMarketPlaceEntity.tt</DependentUpon>
+      <DependentUpon>NoteMarketPlace.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\NoteReview.cs">
-      <DependentUpon>NoteMarketPlaceEntity.tt</DependentUpon>
+      <DependentUpon>NoteMarketPlace.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\NoteUnderReview.cs" />
     <Compile Include="Models\RejectedNote.cs">
-      <DependentUpon>NoteMarketPlaceEntity.tt</DependentUpon>
+      <DependentUpon>NoteMarketPlace.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SpamReport.cs">
-      <DependentUpon>NoteMarketPlaceEntity.tt</DependentUpon>
+      <DependentUpon>NoteMarketPlace.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SystemConfiguration.cs">
-      <DependentUpon>NoteMarketPlaceEntity.tt</DependentUpon>
+      <DependentUpon>NoteMarketPlace.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Type.cs">
-      <DependentUpon>NoteMarketPlaceEntity.tt</DependentUpon>
+    <Compile Include="Models\Types.cs">
+      <DependentUpon>NoteMarketPlace.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
-      <DependentUpon>NoteMarketPlaceEntity.tt</DependentUpon>
+      <DependentUpon>NoteMarketPlace.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserDetail.cs">
-      <DependentUpon>NoteMarketPlaceEntity.tt</DependentUpon>
+      <DependentUpon>NoteMarketPlace.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -3733,15 +3738,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\NoteMarketPlaceEntity.Context.tt">
+    <Content Include="Models\NoteMarketPlace.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>NoteMarketPlaceEntity.edmx</DependentUpon>
-      <LastGenOutput>NoteMarketPlaceEntity.Context.cs</LastGenOutput>
+      <DependentUpon>NoteMarketPlace.edmx</DependentUpon>
+      <LastGenOutput>NoteMarketPlace.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\NoteMarketPlaceEntity.tt">
+    <Content Include="Models\NoteMarketPlace.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>NoteMarketPlaceEntity.edmx</DependentUpon>
-      <LastGenOutput>NoteMarketPlaceEntity.cs</LastGenOutput>
+      <DependentUpon>NoteMarketPlace.edmx</DependentUpon>
+      <LastGenOutput>NoteMarketPlace.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -3811,13 +3816,6 @@
     <Content Include="Content\css\font-awesome\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\css\font-awesome\fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\css\font-awesome\fonts\FontAwesome.otf" />
-    <EntityDeploy Include="Models\NoteMarketPlaceEntity.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>NoteMarketPlaceEntity.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\NoteMarketPlaceEntity.edmx.diagram">
-      <DependentUpon>NoteMarketPlaceEntity.edmx</DependentUpon>
-    </Content>
     <Content Include="Admin_Content\css\font-awesome\fontawesome-free-5.15.1-web\less\brands.less" />
     <Content Include="Admin_Content\css\font-awesome\fontawesome-free-5.15.1-web\less\fontawesome.less" />
     <Content Include="Admin_Content\css\font-awesome\fontawesome-free-5.15.1-web\less\regular.less" />
@@ -3884,6 +3882,13 @@
     <Content Include="Admin_Content\images\Notes Details\Thumbs.db" />
     <Content Include="Admin_Content\images\pre-login\Thumbs.db" />
     <Content Include="Admin_Content\images\user-profile\Thumbs.db" />
+    <EntityDeploy Include="Models\NoteMarketPlace.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>NoteMarketPlace.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\NoteMarketPlace.edmx.diagram">
+      <DependentUpon>NoteMarketPlace.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -3932,6 +3937,24 @@
     <Content Include="Views\Admin\Dashboard.cshtml" />
     <Content Include="Views\Shared\AdminRegister.cshtml" />
     <Content Include="Views\Admin\NoteDetail.cshtml" />
+    <Content Include="Views\Admin\NoteUnderReview.cshtml" />
+    <Content Include="Views\Admin\DownloadNote.cshtml" />
+    <Content Include="Views\Admin\Member.cshtml" />
+    <Content Include="Views\Admin\MemberDetail.cshtml" />
+    <Content Include="Views\Admin\ChangePassword.cshtml" />
+    <Content Include="Views\Admin\AdminProfile.cshtml" />
+    <Content Include="Views\Admin\PublishedNote.cshtml" />
+    <Content Include="Views\Admin\RejectedNote.cshtml" />
+    <Content Include="Views\Admin\SpamReport.cshtml" />
+    <Content Include="Views\Admin\ManageCategory.cshtml" />
+    <Content Include="Views\Admin\AddCategory.cshtml" />
+    <Content Include="Views\Admin\ManageAdministrator.cshtml" />
+    <Content Include="Views\Admin\AddAdministrator.cshtml" />
+    <Content Include="Views\Admin\ManageSystemConfiguration.cshtml" />
+    <Content Include="Views\Admin\AddType.cshtml" />
+    <Content Include="Views\Admin\AddCountry.cshtml" />
+    <Content Include="Views\Admin\ManageType.cshtml" />
+    <Content Include="Views\Admin\ManageCountry.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

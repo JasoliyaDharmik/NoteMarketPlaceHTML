@@ -13,6 +13,8 @@
     <Property Name="SecondaryEmail" Type="varchar" MaxLength="100" />
     <Property Name="PhoneNumber" Type="varchar" MaxLength="20" />
     <Property Name="ProfilePicture" Type="varchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
     <Property Name="ModifiedDate" Type="datetime" />
     <Property Name="ModifiedBy" Type="int" />
     <Property Name="IsActive" Type="bit" Nullable="false" />
@@ -96,7 +98,12 @@
     <Property Name="SellerID" Type="int" Nullable="false" />
     <Property Name="NoteID" Type="int" Nullable="false" />
     <Property Name="Status" Type="bit" Nullable="false" />
-    <Property Name="ApprovedDate" Type="datetime" Nullable="false" />
+    <Property Name="ApprovedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="NoteReview">
     <Key>
@@ -126,6 +133,7 @@
     <Property Name="CreatedBy" Type="int" />
     <Property Name="ModifiedDate" Type="datetime" />
     <Property Name="ModifiedBy" Type="int" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="SpamReport">
     <Key>
@@ -139,6 +147,7 @@
     <Property Name="CreatedBy" Type="int" />
     <Property Name="ModifiedDate" Type="datetime" />
     <Property Name="ModifiedBy" Type="int" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="SystemConfiguration">
     <Key>
@@ -157,19 +166,6 @@
     <Property Name="CreatedBy" Type="int" />
     <Property Name="ModifiedDate" Type="datetime" />
     <Property Name="ModifiedBy" Type="int" />
-  </EntityType>
-  <EntityType Name="Type">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="TypeName" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Description" Type="varchar(max)" Nullable="false" />
-    <Property Name="CreatedDate" Type="datetime" />
-    <Property Name="CreatedBy" Type="int" />
-    <Property Name="ModifiedDate" Type="datetime" />
-    <Property Name="ModifiedBy" Type="int" />
-    <Property Name="IsActive" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="UserDetail">
     <Key>
@@ -365,7 +361,6 @@
     <EntitySet Name="RejectedNote" EntityType="Self.RejectedNote" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SpamReport" EntityType="Self.SpamReport" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SystemConfiguration" EntityType="Self.SystemConfiguration" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserDetail" EntityType="Self.UserDetail" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_NoteDetail_Users" Association="Self.FK_NoteDetail_Users">

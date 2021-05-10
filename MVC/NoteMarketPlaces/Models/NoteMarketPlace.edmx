@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="NoteMarketPlaceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="NoteMarketPlaceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AdminDetail">
           <Key>
             <PropertyRef Name="AdminID" />
@@ -18,6 +18,8 @@
           <Property Name="SecondaryEmail" Type="varchar" MaxLength="100" />
           <Property Name="PhoneNumber" Type="varchar" MaxLength="20" />
           <Property Name="ProfilePicture" Type="varchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" />
           <Property Name="ModifiedDate" Type="datetime" />
           <Property Name="ModifiedBy" Type="int" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
@@ -101,7 +103,12 @@
           <Property Name="SellerID" Type="int" Nullable="false" />
           <Property Name="NoteID" Type="int" Nullable="false" />
           <Property Name="Status" Type="bit" Nullable="false" />
-          <Property Name="ApprovedDate" Type="datetime" Nullable="false" />
+          <Property Name="ApprovedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="NoteReview">
           <Key>
@@ -131,6 +138,7 @@
           <Property Name="CreatedBy" Type="int" />
           <Property Name="ModifiedDate" Type="datetime" />
           <Property Name="ModifiedBy" Type="int" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="SpamReport">
           <Key>
@@ -144,6 +152,7 @@
           <Property Name="CreatedBy" Type="int" />
           <Property Name="ModifiedDate" Type="datetime" />
           <Property Name="ModifiedBy" Type="int" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="SystemConfiguration">
           <Key>
@@ -163,7 +172,7 @@
           <Property Name="ModifiedDate" Type="datetime" />
           <Property Name="ModifiedBy" Type="int" />
         </EntityType>
-        <EntityType Name="Type">
+        <EntityType Name="Types">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -370,7 +379,7 @@
           <EntitySet Name="RejectedNote" EntityType="Self.RejectedNote" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SpamReport" EntityType="Self.SpamReport" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SystemConfiguration" EntityType="Self.SystemConfiguration" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Types" EntityType="Self.Types" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserDetail" EntityType="Self.UserDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_NoteDetail_Users" Association="Self.FK_NoteDetail_Users">
@@ -422,7 +431,8 @@
             <End Role="UserDetail" EntitySet="UserDetail" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="NoteMarketPlaceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -430,7 +440,7 @@
           <Key>
             <PropertyRef Name="AdminID" />
           </Key>
-          <Property Name="AdminID" Type="Int32" Nullable="false" />
+          <Property Name="AdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
@@ -439,6 +449,8 @@
           <Property Name="SecondaryEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="ProfilePicture" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
@@ -447,20 +459,20 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Categories" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="CreatedBy" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="Categories" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ContactU">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Subject" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
@@ -475,7 +487,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CountryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CountryCode" Type="Int32" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
@@ -488,7 +500,7 @@
           <Key>
             <PropertyRef Name="NoteID" />
           </Key>
-          <Property Name="NoteID" Type="Int32" Nullable="false" />
+          <Property Name="NoteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OwnerID" Type="Int32" Nullable="false" />
           <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Category" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -518,11 +530,81 @@
           <NavigationProperty Name="RejectedNotes" Relationship="Self.FK_RejectedNote_NoteDetail" FromRole="NoteDetail" ToRole="RejectedNote" />
           <NavigationProperty Name="SpamReports" Relationship="Self.FK_SpamReport_NoteDetail" FromRole="NoteDetail" ToRole="SpamReport" />
         </EntityType>
+        <EntityType Name="NoteRequest">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BuyerID" Type="Int32" Nullable="false" />
+          <Property Name="SellerID" Type="Int32" Nullable="false" />
+          <Property Name="NoteID" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="ApprovedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="NoteDetail" Relationship="Self.FK_NoteRequest_NoteDetail" FromRole="NoteRequest" ToRole="NoteDetail" />
+          <NavigationProperty Name="User" Relationship="Self.FK_NoteRequest_Users" FromRole="NoteRequest" ToRole="Users" />
+          <NavigationProperty Name="User1" Relationship="Self.FK_NoteRequest_Users1" FromRole="NoteRequest" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="NoteReview">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NoteID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="OwnerID" Type="Int32" Nullable="false" />
+          <Property Name="Rating" Type="Int32" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="NoteDetail" Relationship="Self.FK_NoteReview_NoteDetail1" FromRole="NoteReview" ToRole="NoteDetail" />
+          <NavigationProperty Name="User" Relationship="Self.FK_NoteReview_Users" FromRole="NoteReview" ToRole="Users" />
+          <NavigationProperty Name="User1" Relationship="Self.FK_NoteReview_Users1" FromRole="NoteReview" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="RejectedNote">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="NoteID" Type="Int32" Nullable="false" />
+          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="NoteDetail" Relationship="Self.FK_RejectedNote_NoteDetail" FromRole="RejectedNote" ToRole="NoteDetail" />
+          <NavigationProperty Name="User" Relationship="Self.FK_RejectedNote_Users" FromRole="RejectedNote" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="SpamReport">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="NoteID" Type="Int32" Nullable="false" />
+          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="NoteDetail" Relationship="Self.FK_SpamReport_NoteDetail" FromRole="SpamReport" ToRole="NoteDetail" />
+          <NavigationProperty Name="User" Relationship="Self.FK_SpamReport_Users" FromRole="SpamReport" ToRole="Users" />
+        </EntityType>
         <EntityType Name="SystemConfiguration">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EmailID1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="EmailID2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
@@ -536,11 +618,11 @@
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
         </EntityType>
-        <EntityType Name="Type">
+        <EntityType Name="Types">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
@@ -553,14 +635,14 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="DOB" Type="DateTime" Precision="3" />
-          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ProfilePicture" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Address1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Address2" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Address2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="State" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ZipCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
@@ -576,7 +658,7 @@
           <Key>
             <PropertyRef Name="UserID" />
           </Key>
-          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="EmailID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
@@ -587,78 +669,15 @@
           <Property Name="CreatedBy" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="ModifiedBy" Type="Int32" />
           <NavigationProperty Name="NoteDetails" Relationship="Self.FK_NoteDetail_Users" FromRole="Users" ToRole="NoteDetail" />
-          <NavigationProperty Name="UserDetails" Relationship="Self.FK_UserDetail_Users" FromRole="Users" ToRole="UserDetail" />
           <NavigationProperty Name="NoteRequests" Relationship="Self.FK_NoteRequest_Users" FromRole="Users" ToRole="NoteRequest" />
           <NavigationProperty Name="NoteRequests1" Relationship="Self.FK_NoteRequest_Users1" FromRole="Users" ToRole="NoteRequest" />
           <NavigationProperty Name="NoteReviews" Relationship="Self.FK_NoteReview_Users" FromRole="Users" ToRole="NoteReview" />
           <NavigationProperty Name="NoteReviews1" Relationship="Self.FK_NoteReview_Users1" FromRole="Users" ToRole="NoteReview" />
           <NavigationProperty Name="RejectedNotes" Relationship="Self.FK_RejectedNote_Users" FromRole="Users" ToRole="RejectedNote" />
           <NavigationProperty Name="SpamReports" Relationship="Self.FK_SpamReport_Users" FromRole="Users" ToRole="SpamReport" />
-          <Property Name="ModifiedBy" Type="Int32" />
-        </EntityType>
-        <EntityType Name="NoteRequest">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="BuyerID" Type="Int32" Nullable="false" />
-          <Property Name="SellerID" Type="Int32" Nullable="false" />
-          <Property Name="NoteID" Type="Int32" Nullable="false" />
-          <Property Name="Status" Type="Boolean" Nullable="false" />
-          <Property Name="ApprovedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="NoteDetail" Relationship="Self.FK_NoteRequest_NoteDetail" FromRole="NoteRequest" ToRole="NoteDetail" />
-          <NavigationProperty Name="User" Relationship="Self.FK_NoteRequest_Users" FromRole="NoteRequest" ToRole="Users" />
-          <NavigationProperty Name="User1" Relationship="Self.FK_NoteRequest_Users1" FromRole="NoteRequest" ToRole="Users" />
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-        </EntityType>
-        <EntityType Name="NoteReview">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="NoteID" Type="Int32" Nullable="false" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="OwnerID" Type="Int32" Nullable="false" />
-          <Property Name="Rating" Type="Int32" Nullable="false" />
-          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-          <Property Name="CreatedBy" Type="Int32" />
-          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="NoteDetail" Relationship="Self.FK_NoteReview_NoteDetail1" FromRole="NoteReview" ToRole="NoteDetail" />
-          <NavigationProperty Name="User" Relationship="Self.FK_NoteReview_Users" FromRole="NoteReview" ToRole="Users" />
-          <NavigationProperty Name="User1" Relationship="Self.FK_NoteReview_Users1" FromRole="NoteReview" ToRole="Users" />
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-        </EntityType>
-        <EntityType Name="RejectedNote">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="NoteID" Type="Int32" Nullable="false" />
-          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-          <Property Name="CreatedBy" Type="Int32" />
-          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <NavigationProperty Name="NoteDetail" Relationship="Self.FK_RejectedNote_NoteDetail" FromRole="RejectedNote" ToRole="NoteDetail" />
-          <NavigationProperty Name="User" Relationship="Self.FK_RejectedNote_Users" FromRole="RejectedNote" ToRole="Users" />
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-        </EntityType>
-        <EntityType Name="SpamReport">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="NoteID" Type="Int32" Nullable="false" />
-          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-          <Property Name="CreatedBy" Type="Int32" />
-          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <NavigationProperty Name="NoteDetail" Relationship="Self.FK_SpamReport_NoteDetail" FromRole="SpamReport" ToRole="NoteDetail" />
-          <NavigationProperty Name="User" Relationship="Self.FK_SpamReport_Users" FromRole="SpamReport" ToRole="Users" />
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="UserDetails" Relationship="Self.FK_UserDetail_Users" FromRole="Users" ToRole="UserDetail" />
         </EntityType>
         <Association Name="FK_NoteDetail_Users">
           <End Role="Users" Type="Self.User" Multiplicity="1" />
@@ -717,18 +736,6 @@
             </Principal>
             <Dependent Role="SpamReport">
               <PropertyRef Name="NoteID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserDetail_Users">
-          <End Role="Users" Type="Self.User" Multiplicity="1" />
-          <End Role="UserDetail" Type="Self.UserDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserID" />
-            </Principal>
-            <Dependent Role="UserDetail">
-              <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -804,20 +811,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserDetail_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="UserDetail" Type="Self.UserDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserDetail">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="NoteMarketPlaceEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AdminDetails" EntityType="Self.AdminDetail" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="ContactUs" EntityType="Self.ContactU" />
           <EntitySet Name="Countries" EntityType="Self.Country" />
           <EntitySet Name="NoteDetails" EntityType="Self.NoteDetail" />
-          <EntitySet Name="SystemConfigurations" EntityType="Self.SystemConfiguration" />
-          <EntitySet Name="Types" EntityType="Self.Type" />
-          <EntitySet Name="UserDetails" EntityType="Self.UserDetail" />
-          <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="NoteRequests" EntityType="Self.NoteRequest" />
           <EntitySet Name="NoteReviews" EntityType="Self.NoteReview" />
           <EntitySet Name="RejectedNotes" EntityType="Self.RejectedNote" />
           <EntitySet Name="SpamReports" EntityType="Self.SpamReport" />
+          <EntitySet Name="SystemConfigurations" EntityType="Self.SystemConfiguration" />
+          <EntitySet Name="Types1" EntityType="NoteMarketPlaceModel.Types" />
+          <EntitySet Name="UserDetails" EntityType="Self.UserDetail" />
+          <EntitySet Name="Users" EntityType="Self.User" />
           <AssociationSet Name="FK_NoteDetail_Users" Association="Self.FK_NoteDetail_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="NoteDetail" EntitySet="NoteDetails" />
@@ -837,10 +856,6 @@
           <AssociationSet Name="FK_SpamReport_NoteDetail" Association="Self.FK_SpamReport_NoteDetail">
             <End Role="NoteDetail" EntitySet="NoteDetails" />
             <End Role="SpamReport" EntitySet="SpamReports" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserDetail_Users" Association="Self.FK_UserDetail_Users">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="UserDetail" EntitySet="UserDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_NoteRequest_Users" Association="Self.FK_NoteRequest_Users">
             <End Role="Users" EntitySet="Users" />
@@ -866,6 +881,10 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="SpamReport" EntitySet="SpamReports" />
           </AssociationSet>
+          <AssociationSet Name="FK_UserDetail_Users" Association="Self.FK_UserDetail_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserDetail" EntitySet="UserDetails" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -885,6 +904,8 @@
                 <ScalarProperty Name="SecondaryEmail" ColumnName="SecondaryEmail" />
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
                 <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
@@ -894,8 +915,8 @@
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="NoteMarketPlaceModel.Category">
               <MappingFragment StoreEntitySet="Category">
-                <ScalarProperty Name="Categories" ColumnName="Categories" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Categories" ColumnName="Categories" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
@@ -965,6 +986,70 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="NoteRequests">
+            <EntityTypeMapping TypeName="NoteMarketPlaceModel.NoteRequest">
+              <MappingFragment StoreEntitySet="NoteRequest">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="BuyerID" ColumnName="BuyerID" />
+                <ScalarProperty Name="SellerID" ColumnName="SellerID" />
+                <ScalarProperty Name="NoteID" ColumnName="NoteID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ApprovedDate" ColumnName="ApprovedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NoteReviews">
+            <EntityTypeMapping TypeName="NoteMarketPlaceModel.NoteReview">
+              <MappingFragment StoreEntitySet="NoteReview">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NoteID" ColumnName="NoteID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RejectedNotes">
+            <EntityTypeMapping TypeName="NoteMarketPlaceModel.RejectedNote">
+              <MappingFragment StoreEntitySet="RejectedNote">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="NoteID" ColumnName="NoteID" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpamReports">
+            <EntityTypeMapping TypeName="NoteMarketPlaceModel.SpamReport">
+              <MappingFragment StoreEntitySet="SpamReport">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="NoteID" ColumnName="NoteID" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="SystemConfigurations">
             <EntityTypeMapping TypeName="NoteMarketPlaceModel.SystemConfiguration">
               <MappingFragment StoreEntitySet="SystemConfiguration">
@@ -984,9 +1069,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Types">
-            <EntityTypeMapping TypeName="NoteMarketPlaceModel.Type">
-              <MappingFragment StoreEntitySet="Type">
+          <EntitySetMapping Name="Types1">
+            <EntityTypeMapping TypeName="NoteMarketPlaceModel.Types">
+              <MappingFragment StoreEntitySet="Types">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="TypeName" ColumnName="TypeName" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -1024,7 +1109,6 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="NoteMarketPlaceModel.User">
               <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -1036,62 +1120,6 @@
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="NoteRequests">
-            <EntityTypeMapping TypeName="NoteMarketPlaceModel.NoteRequest">
-              <MappingFragment StoreEntitySet="NoteRequest">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="BuyerID" ColumnName="BuyerID" />
-                <ScalarProperty Name="SellerID" ColumnName="SellerID" />
-                <ScalarProperty Name="NoteID" ColumnName="NoteID" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="ApprovedDate" ColumnName="ApprovedDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="NoteReviews">
-            <EntityTypeMapping TypeName="NoteMarketPlaceModel.NoteReview">
-              <MappingFragment StoreEntitySet="NoteReview">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="NoteID" ColumnName="NoteID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-                <ScalarProperty Name="Rating" ColumnName="Rating" />
-                <ScalarProperty Name="Comments" ColumnName="Comments" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RejectedNotes">
-            <EntityTypeMapping TypeName="NoteMarketPlaceModel.RejectedNote">
-              <MappingFragment StoreEntitySet="RejectedNote">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="NoteID" ColumnName="NoteID" />
-                <ScalarProperty Name="Remark" ColumnName="Remark" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SpamReports">
-            <EntityTypeMapping TypeName="NoteMarketPlaceModel.SpamReport">
-              <MappingFragment StoreEntitySet="SpamReport">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="NoteID" ColumnName="NoteID" />
-                <ScalarProperty Name="Remark" ColumnName="Remark" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
               </MappingFragment>
             </EntityTypeMapping>

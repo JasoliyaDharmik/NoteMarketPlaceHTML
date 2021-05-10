@@ -171,9 +171,11 @@
                                     <div class="form-group">
                                         <div class="upload-profile-picture">
                                             <label class="mylabel" for="InputEmail1">Profile Picture</label>
-                                            <input type="file" name="File" class="form-control InputEmail1" accept="image/*">
-
-                                            <div class="uploadmypic text-center">
+                                            <input type="file" name="File" class="form-control InputEmail1" accept="image/*" onchange="preview()">
+                                          
+                                            <div class="uploadmypic text-center"><img id="frame" class="img-fluid" style=" height:100px; width:50%; object-fit: cover; " /></div>
+                                          
+                                            <div class="uploadmypic text-center" id="img">
                                                 <img class="img-fluid" src="~/Content/images/user-profile/upload.png">
                                                 <h6>Upload a picture</h6>
                                             </div>
@@ -189,6 +191,14 @@
         </section>
         <!-- Second Section Ends-->
         <!-- Third Section -->
+        
+        <script type="text/javascript">
+        function preview() {
+            frame.src = URL.createObjectURL(event.target.files[0]);
+            document.getElementById("img").style.display = "none";
+        }
+        </script>
+
         <section id="Address-details" class="user-profile content-box-md">
             <div>
                 <div class="container">

@@ -30,13 +30,13 @@ namespace NoteMarketPlaces.Models
         public virtual DbSet<ContactU> ContactUs { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<NoteDetail> NoteDetails { get; set; }
-        public virtual DbSet<SystemConfiguration> SystemConfigurations { get; set; }
-        public virtual DbSet<Type> Types { get; set; }
-        public virtual DbSet<UserDetail> UserDetails { get; set; }
-        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<NoteRequest> NoteRequests { get; set; }
         public virtual DbSet<NoteReview> NoteReviews { get; set; }
         public virtual DbSet<RejectedNote> RejectedNotes { get; set; }
         public virtual DbSet<SpamReport> SpamReports { get; set; }
+        public virtual DbSet<SystemConfiguration> SystemConfigurations { get; set; }
+        public virtual DbSet<Types> Types1 { get; set; }
+        public virtual DbSet<UserDetail> UserDetails { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

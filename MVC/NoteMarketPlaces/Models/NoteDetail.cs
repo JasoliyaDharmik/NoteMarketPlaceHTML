@@ -27,7 +27,7 @@ namespace NoteMarketPlaces.Models
 
         public int NoteID { get; set; }
         public int OwnerID { get; set; }
-        public string Publisher{get; set; }
+        public string Publisher { get; set; }
         public int NumberOfDownload { get; set; }
 
         [Required]
@@ -36,6 +36,8 @@ namespace NoteMarketPlaces.Models
         [Required]
         public string Category { get; set; }
         public string BookPicture { get; set; }
+        public string ModifiedName { get; set; }
+        public string Remark { get; set; }
 
         public HttpPostedFileBase FileBookPicture { get; set; }
         public HttpPostedFileBase FileNotePreview { get; set; }
@@ -80,4 +82,3 @@ namespace NoteMarketPlaces.Models
         public virtual ICollection<SpamReport> SpamReports { get; set; }
     }
 }
-

@@ -16,6 +16,8 @@
     <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
     <Property Name="ModifiedBy" Type="Int32" />
     <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
   </EntityType>
   <EntityType Name="Category">
     <Key>
@@ -110,7 +112,7 @@
     <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
     <Property Name="ModifiedBy" Type="Int32" />
   </EntityType>
-  <EntityType Name="Type">
+  <EntityType Name="Types">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
@@ -179,11 +181,16 @@
     <Property Name="SellerID" Type="Int32" Nullable="false" />
     <Property Name="NoteID" Type="Int32" Nullable="false" />
     <Property Name="Status" Type="Boolean" Nullable="false" />
-    <Property Name="ApprovedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ApprovedDate" Type="DateTime" Precision="3" />
     <NavigationProperty Name="NoteDetail" Relationship="Self.FK_NoteRequest_NoteDetail" FromRole="NoteRequest" ToRole="NoteDetail" />
     <NavigationProperty Name="User" Relationship="Self.FK_NoteRequest_Users" FromRole="NoteRequest" ToRole="Users" />
     <NavigationProperty Name="User1" Relationship="Self.FK_NoteRequest_Users1" FromRole="NoteRequest" ToRole="Users" />
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="NoteReview">
     <Key>
@@ -218,6 +225,7 @@
     <NavigationProperty Name="NoteDetail" Relationship="Self.FK_RejectedNote_NoteDetail" FromRole="RejectedNote" ToRole="NoteDetail" />
     <NavigationProperty Name="User" Relationship="Self.FK_RejectedNote_Users" FromRole="RejectedNote" ToRole="Users" />
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="SpamReport">
     <Key>
@@ -233,6 +241,7 @@
     <NavigationProperty Name="NoteDetail" Relationship="Self.FK_SpamReport_NoteDetail" FromRole="SpamReport" ToRole="NoteDetail" />
     <NavigationProperty Name="User" Relationship="Self.FK_SpamReport_Users" FromRole="SpamReport" ToRole="Users" />
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
   </EntityType>
   <Association Name="FK_NoteDetail_Users">
     <End Role="Users" Type="Self.User" Multiplicity="1" />
@@ -385,7 +394,7 @@
     <EntitySet Name="Countries" EntityType="Self.Country" />
     <EntitySet Name="NoteDetails" EntityType="Self.NoteDetail" />
     <EntitySet Name="SystemConfigurations" EntityType="Self.SystemConfiguration" />
-    <EntitySet Name="Types" EntityType="Self.Type" />
+    <EntitySet Name="Types1" EntityType="Self.Types" />
     <EntitySet Name="UserDetails" EntityType="Self.UserDetail" />
     <EntitySet Name="Users" EntityType="Self.User" />
     <EntitySet Name="NoteRequests" EntityType="Self.NoteRequest" />

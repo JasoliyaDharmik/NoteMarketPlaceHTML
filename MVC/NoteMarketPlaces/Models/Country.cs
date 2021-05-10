@@ -11,12 +11,20 @@ namespace NoteMarketPlaces.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Country
     {
         public int ID { get; set; }
+
+        [Required]
+        [RegularExpression("^[a-zA-Z]*$", ErrorMessage = "Enter valid Country!")]
         public string CountryName { get; set; }
+
+        [Required]
         public int CountryCode { get; set; }
+        public string AddedBy { get; set; }
+
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }

@@ -25,11 +25,16 @@ namespace NoteMarketPlaces.Models
         public string BuyerPhoneNumber { get; set; }
         public string SellType { get; set; }
         public bool Status { get; set; }
-        public System.DateTime ApprovedDate { get; set; }
+        public Nullable<System.DateTime> ApprovedDate { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
+        public Nullable<int> CreatedBy { get; set; }
+        public Nullable<System.DateTime> ModifiedDate { get; set; }
+        public Nullable<int> ModifiedBy { get; set; }
+        public bool IsActive { get; set; }
+
 
         public virtual NoteDetail NoteDetail { get; set; }
         public virtual User User { get; set; }
         public virtual User User1 { get; set; }
     }
 }
-

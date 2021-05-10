@@ -11,16 +11,24 @@ namespace NoteMarketPlaces.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Category
     {
         public int ID { get; set; }
+
+        [Required]
+        [RegularExpression("^[a-zA-Z]*$", ErrorMessage = "Enter valid Category!")]
+        public string Categories { get; set; }
+
+        [Required]
         public string Description { get; set; }
+        public string AddedBy { get; set; }
+
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public bool IsActive { get; set; }
-        public string Categories { get; set; }
     }
 }

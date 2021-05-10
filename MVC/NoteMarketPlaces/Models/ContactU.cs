@@ -34,4 +34,3 @@ namespace NoteMarketPlaces.Models
         public bool IsActive { get; set; }
     }
 }
-

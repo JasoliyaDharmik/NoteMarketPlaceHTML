@@ -11,6 +11,6 @@ namespace NoteMarketPlaces.Models
     {
         public NoteReview noteReview { get; set; }
         public SpamReport spamReport { get; set; }
-        public IPagedList<NoteRequest> pagedList {get; set;}
+        public IPagedList<NoteRequest> pagedList {get; set; }
     }
 }

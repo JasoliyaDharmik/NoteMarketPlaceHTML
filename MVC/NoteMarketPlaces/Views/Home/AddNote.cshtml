@@ -85,10 +85,9 @@
                                         <div class="form-group">
                                             <div class="upload-profile-picture">
                                                 <label class="mylabel" for="InputEmail1">Display Picture</label>
-
-
-                                                <input type="file" accept="image/*" name="FileBookPicture" class="form-control InputEmail1" aria-describedby="emailHelp">
-                                                <div class="uploadmypic text-center">
+                                                <input type="file" accept="image/*" name="FileBookPicture" class="form-control InputEmail1" aria-describedby="emailHelp" onchange="previewimg()">
+                                                <div class="uploadmypic text-center"><img id="frame" class="img-fluid" style=" height:100px; width:50%; object-fit: cover; " /></div>
+                                                <div class="uploadmypic text-center" id="img">
                                                     <img class="img-fluid" src="~/content/images/user-profile/upload.png">
                                                     <h6>Upload a picture</h6>
                                                 </div>
@@ -101,11 +100,9 @@
                                         <div class="form-group">
                                             <div class="upload-profile-picture">
                                                 <label class="mylabel" for="InputEmail1">Upload Notes *</label>
+                                                <input type="file" accept="application/pdf" name="FileUploadNote" class="form-control InputEmail1" aria-describedby="emailHelp" onchange="previewnote()">
 
-
-                                                <input type="file" accept="application/pdf" name="FileUploadNote" class="form-control InputEmail1" aria-describedby="emailHelp">
-                                                
-                                                <div class="uploadmypic text-center">
+                                                <div class="uploadmypic text-center" id="note">
                                                     <img class="img-fluid" src="~/content/images/user-profile/upload.png">
                                                     <h6>Upload Your Notes</h6>
                                                 </div>
@@ -122,6 +119,18 @@
 
                                     </div>
                                 </div>
+                                
+                                <script type="text/javascript">
+                                    function previewimg() {
+                                        frame.src = URL.createObjectURL(event.target.files[0]);
+                                        document.getElementById("img").style.display = "none";
+                                    }
+
+                                    function previewnote() {
+                                        frame1.src = URL.createObjectURL(event.target.files[0]);
+                                        document.getElementById("note").style.display = "none";
+                                    }
+                                </script>
 
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6">

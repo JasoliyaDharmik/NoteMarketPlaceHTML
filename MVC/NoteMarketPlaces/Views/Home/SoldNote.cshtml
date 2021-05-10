@@ -81,17 +81,14 @@
                                                     <img src="~/content/images/Dashboard/eye.png" alt="view" style="cursor:pointer" onclick="@("window.location.href = '"+ @Url.Action("NoteDetail","Home",new { noteId = notes.NoteID.ToString() } )+"'")">
                                                 </td>
                                                 <td class="align-middle">
-                                                    <div class="dropdown">
+                                                    <div class="dropdown" style="cursor:pointer">
                                                         <a id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                             <i class="fas fa-ellipsis-v  dowhite"></i>
                                                         </a>
                                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                                                            <a class="dropdown-item">Download Notes</a>
+                                                            <a class="dropdown-item" href="@Url.Action("SoldNote","Home", new {noteId = notes.NoteID ,search = Request.QueryString["search"], sortBy = "title", page = Request.QueryString["page"]  })">Download Notes</a>
                                                         </div>
                                                     </div>
-                                                </td>
-                                                <td>
-                                                    <a class="dropdown-item" href="@Url.Action("SoldNote","Home", new {noteId = notes.NoteID ,search = Request.QueryString["search"], sortBy = "title", page = Request.QueryString["page"]  })">Download Notes</a>
                                                 </td>
                                                 <td></td>
                                             </tr>

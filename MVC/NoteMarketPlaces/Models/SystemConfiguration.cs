@@ -11,13 +11,19 @@ namespace NoteMarketPlaces.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web;
+
     public partial class SystemConfiguration
     {
+
         public int ID { get; set; }
         public string EmailID1 { get; set; }
         public string EmailID2 { get; set; }
         public string PhoneNumber { get; set; }
+
+        public HttpPostedFileBase FileProfilePicture { get; set; }
+        public HttpPostedFileBase FileNotePicture { get; set; }
+
         public string DefaultProfilePicture { get; set; }
         public string DefaultNotePreview { get; set; }
         public string FacebookURL { get; set; }

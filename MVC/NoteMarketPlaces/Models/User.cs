@@ -52,7 +52,7 @@ namespace NoteMarketPlaces.Models
 
         [Required]
         [Compare("Password")]
-        [Display(Name ="confirm password")]
+        [Display(Name = "confirm password")]
         public string Password2 { get; set; }
 
         public bool IsEmailVerified { get; set; }

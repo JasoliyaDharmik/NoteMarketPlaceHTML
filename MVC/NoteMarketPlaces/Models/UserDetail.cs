@@ -50,7 +50,9 @@ namespace NoteMarketPlaces.Models
 
         [Required]
         public string College { get; set; }
+
         public HttpPostedFileBase File { get; set; }
+
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public bool IsActive { get; set; }

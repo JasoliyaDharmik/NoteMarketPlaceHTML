@@ -1,0 +1,91 @@
+﻿@model NoteMarketPlaces.Models.AdminDetail
+
+@{
+    ViewBag.Title = "AddAdministrator";
+    Layout = "~/Views/Shared/AdminRegister.cshtml";
+}
+
+    <form class="user-details-form" method="post">
+
+        <input name="Adminid" value="@Model.AdminID" hidden />
+        <!-- Second Section -->
+        <section id="basic-profile-details" class="user-profile content-box-md">
+            <div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="head">
+                                <h3>Add Administrator</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-lg-6">
+                            <div class="row">
+
+                                <div class="col-12">
+                                    <!-- First Name -->
+                                    <div class="form-group">
+                                        <label class="mylabel">First Name *</label>
+                                        @Html.TextBoxFor(m => m.FirstName, new { @class="form-control InputEmail1", @placeholder="Enter your name"})
+                                        @Html.ValidationMessageFor(m => m.FirstName)
+                                    </div>
+
+                                </div>
+                                <div class="col-12">
+                                    <!-- Last Name -->
+                                    <div class="form-group">
+                                        <label class="mylabel" for="InputEmail1">Last Name *</label>
+                                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control InputEmail1", @placeholder = "Enter your last name" })
+                                        @Html.ValidationMessageFor(m => m.LastName)
+                                    </div>
+
+                                </div>
+                                <div class="col-12">
+                                    <!-- Last Name -->
+                                    <div class="form-group">
+                                        <label class="mylabel" for="InputEmail1">Email *</label>
+                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control InputEmail1", @placeholder = "Enter your email address" })
+                                        @Html.ValidationMessageFor(m => m.Email)
+                                    </div>
+
+                                </div>
+                                <div class="col-12">
+                                    <!-- Phone Number -->
+                                    <div class="form-group">
+                                        <label class="mylabel">Phone Number</label>
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-md-3 col-sm-3 col-3 col-xl-3 col-lg-4  nopadding">
+                                                    <div class="marginright">
+
+                                                        <select class="form-control inputselect">
+                                                            <option>+91</option>
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-9 col-sm-9 col-9 col-xl-9 col-lg-8 nopadding">
+                                                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class="form-control InputEmail1", @placeholder="Enter your phone number"})
+                                                    @Html.ValidationMessageFor(m => m.PhoneNumber)
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-5 col-md-4">
+                                    <button type="submit" class="btn text-uppercase text-center" id="mybtn"><b>submit</b></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <!-- Second Section Ends-->
+    </form>

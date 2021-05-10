@@ -73,13 +73,12 @@
                                                 <td class="align-middle">@db.RejectedNotes.SingleOrDefault(m => m.NoteID == note.NoteID).Remark</td>
                                                 <td class="align-middle getpurple">clone</td>
                                                 <td class="align-middle">
-                                                    <div class="dropdown">
+                                                    <div class="dropdown" style="cursor:pointer">
                                                         <a type="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                             <i class="fas fa-ellipsis-v dowhite"></i>
                                                         </a>
                                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                                                            <a class="dropdown-item" href="#">Download Notes</a>
-
+                                                            <a class="dropdown-item" href="@Url.Action("RejectedNote","Home", new {noteId = note.NoteID ,search = Request.QueryString["search"], sortBy = "title", page = Request.QueryString["page"]  })">Allow Download</a>
                                                         </div>
                                                     </div>
                                                 </td>

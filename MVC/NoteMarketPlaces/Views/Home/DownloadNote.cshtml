@@ -87,22 +87,18 @@
                                                     <img src="~/content/images/Dashboard/eye.png" alt="view" style="cursor:pointer" onclick="@("window.location.href = '"+ @Url.Action("Notedetail","Home",new { noteId = notes.NoteID.ToString() } )+"'")">
                                                 </td>
                                                 <td class="align-middle">
-                                                    <div class="dropdown dopointer">
+                                                    <div class="dropdown dopointer" style="cursor:pointer">
                                                         <a id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                             <i class="fa fa-ellipsis-v  dowhite"></i>
                                                         </a>
                                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                                                            <a class="dropdown-item">Download Note</a>
-                                                            <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal">Add Reviews/Feedback</a>
-                                                            <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal1">Report as Inappropriate</a>
+                                                            <a class="dropdown-item" onclick="@("window.location.href='" + @Url.Action("DownloadNote","Home",new { noteId = notes.NoteID, search = Request.QueryString["search"], sortBy = "price", page = Request.QueryString["page"] }) + "'");">Download Notes</a>
+                                                            <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal" onclick="review(@notes.NoteID)">Add Reviews/Feedback</a>
+                                                            <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal1" onclick="spam(@notes.NoteID,'@notes.NoteTitle')">Report as Inappropriate</a>
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td style="cursor:pointer">
-                                                    <a class="dropdown-item" onclick="@("window.location.href='" + @Url.Action("DownloadNote","Home",new { noteId = notes.NoteID, search = Request.QueryString["search"], sortBy = "price", page = Request.QueryString["page"] }) + "'");">Download Notes</a>
-                                                    <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal" onclick="review(@notes.NoteID)">Add Reviews/Feedback</a>
-                                                    <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal1" onclick="spam(@notes.NoteID,'@notes.NoteTitle')">Report as Inappropriate</a>
-                                                </td>
+                                                <td></td>
                                             </tr>
                                         }
                                     }

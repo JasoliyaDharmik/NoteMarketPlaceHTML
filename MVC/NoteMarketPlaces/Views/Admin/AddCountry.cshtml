@@ -1,0 +1,62 @@
+﻿@model NoteMarketPlaces.Models.Country
+
+@{
+    ViewBag.Title = "Add Country";
+    Layout = "~/Views/Shared/AdminRegister.cshtml";
+}
+
+<form class="user-details-form" method="post">
+
+    <input hidden name="ID" value="@Model.ID" />
+
+    <!-- Second Section -->
+    <section id="basic-profile-details" class="user-profile content-box-md">
+        <div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="head">
+                            <h3>Add Country</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-lg-6">
+                        <div class="row">
+
+                            <div class="col-12">
+                                <!-- First Name -->
+                                <div class="form-group">
+                                    <label class="mylabel">Country Name *</label>
+                                    @Html.TextBoxFor(m => m.CountryName, new { @class = "form-control InputEmail1", @placeholder = "Enter your Country Name" })
+                                    @Html.ValidationMessageFor(m => m.CountryName)
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Upload a Picture -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="textarea-input">
+                                        <label class="mylabel" for="InputEmail1">Country Code *</label>
+                                        @Html.TextAreaFor(m => m.CountryCode, new { @placeholder = "Enter Country Code", @class = "form-control InputEmail1" })
+                                        @Html.ValidationMessageFor(m => m.CountryCode)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-5 col-md-4">
+                                <button type="submit" class="btn text-uppercase text-center" id="mybtn"><b>submit</b></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Second Section Ends-->
+</form>

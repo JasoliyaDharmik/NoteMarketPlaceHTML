@@ -4,6 +4,8 @@
     <EntitySetMapping Name="AdminDetails">
       <EntityTypeMapping TypeName="NoteMarketPlaceModel.AdminDetail">
         <MappingFragment StoreEntitySet="AdminDetail">
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="AdminID" ColumnName="AdminID" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -112,20 +114,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Types">
-      <EntityTypeMapping TypeName="NoteMarketPlaceModel.Type">
-        <MappingFragment StoreEntitySet="Type">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="UserDetails">
       <EntityTypeMapping TypeName="NoteMarketPlaceModel.UserDetail">
         <MappingFragment StoreEntitySet="UserDetail">
@@ -170,6 +158,11 @@
     <EntitySetMapping Name="NoteRequests">
       <EntityTypeMapping TypeName="NoteMarketPlaceModel.NoteRequest">
         <MappingFragment StoreEntitySet="NoteRequest">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="BuyerID" ColumnName="BuyerID" />
           <ScalarProperty Name="SellerID" ColumnName="SellerID" />
@@ -199,6 +192,7 @@
     <EntitySetMapping Name="RejectedNotes">
       <EntityTypeMapping TypeName="NoteMarketPlaceModel.RejectedNote">
         <MappingFragment StoreEntitySet="RejectedNote">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="NoteID" ColumnName="NoteID" />
@@ -213,6 +207,7 @@
     <EntitySetMapping Name="SpamReports">
       <EntityTypeMapping TypeName="NoteMarketPlaceModel.SpamReport">
         <MappingFragment StoreEntitySet="SpamReport">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="NoteID" ColumnName="NoteID" />

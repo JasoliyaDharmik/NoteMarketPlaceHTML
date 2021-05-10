@@ -11,20 +11,43 @@ namespace NoteMarketPlaces.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.Web;
+
     public partial class AdminDetail
     {
         public int AdminID { get; set; }
+
+        [Required]
+        [RegularExpression("^[a-zA-Z]*$", ErrorMessage = "Enter valid name")]
         public string FirstName { get; set; }
+
+        [Required]
+        [RegularExpression("^[a-zA-Z]*$", ErrorMessage = "Enter valid name")]
         public string LastName { get; set; }
+
+        [Required]
+        [EmailAddress]
         public string Email { get; set; }
         public string Password { get; set; }
         public string Type { get; set; }
+
+        [EmailAddress]
         public string SecondaryEmail { get; set; }
+
+        public string CountryCode { get; set; }
+
+        [Phone]
         public string PhoneNumber { get; set; }
+
+        public HttpPostedFileBase File { get; set; }
+
         public string ProfilePicture { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
+        public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public bool IsActive { get; set; }
+
     }
 }

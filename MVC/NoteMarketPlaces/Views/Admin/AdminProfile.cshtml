@@ -1,0 +1,116 @@
+﻿@model NoteMarketPlaces.Models.AdminDetail
+
+@{
+    ViewBag.Title = "AdminProfile";
+    Layout = "~/Views/Shared/AdminRegister.cshtml";
+}
+    <form class="user-details-form" method="post" enctype="multipart/form-data">
+
+        <!-- Second Section -->
+        <section id="basic-profile-details" class="user-profile content-box-md">
+            <div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="head">
+                                <h3>My Profile</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-lg-6">
+                            <div class="row">
+
+                                <div class="col-12">
+                                    <!-- First Name -->
+                                    <div class="form-group">
+                                        <label class="mylabel">First Name *</label>
+                                        @Html.TextBoxFor(m => m.FirstName, new { @class="form-control InputEmail1", @placeholder="Enter your First Name"})
+                                        @Html.ValidationMessageFor(m => m.FirstName)
+                                    </div>
+
+                                </div>
+                                <div class="col-12">
+                                    <!-- Last Name -->
+                                    <div class="form-group">
+                                        <label class="mylabel" for="InputEmail1">Last Name *</label>
+                                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control InputEmail1", @placeholder = "Enter your Last Name" })
+                                        @Html.ValidationMessageFor(m => m.LastName)
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <!-- Email -->
+                                    <div class="form-group">
+                                        <label class="mylabel" for="InputEmail1">Email *</label>
+                                        @Html.TextBoxFor(m => m.Email, new { @type="email", @class="form-control InputEmail1", @placeholder="Enter your Email Address", @readonly = true})
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <!-- Gender -->
+                                    <div class="form-group">
+                                        <label class="mylabel">Secodary Email</label>
+                                        @Html.TextBoxFor(m => m.SecondaryEmail, new { @type = "email", @class = "form-control InputEmail1", @placeholder = "Enter your Email Address" })
+                                        @Html.ValidationMessageFor(m => m.SecondaryEmail)
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <!-- Phone Number -->
+                                    <div class="form-group">
+                                        <label class="mylabel">Phone Number</label>
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-md-3 col-sm-3 col-3 col-xl-3 col-lg-4  nopadding">
+                                                    <div class="marginright">
+
+                                                        <select name="CountryCode" class="form-control inputselect">
+                                                            <option>+91</option>
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-9 col-sm-9 col-9 col-xl-9 col-lg-8 nopadding">
+                                                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control InputEmail1", @placeholder = "Enter your phone number" })
+                                                    @Html.ValidationMessageFor(m => m.PhoneNumber)
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Upload a Picture -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <div class="upload-profile-picture">
+                                            <label class="mylabel" for="InputEmail1">Profile Picture</label>
+
+                                            <input type="file" name="File"  accept="image/*" class="form-control InputEmail1" aria-describedby="emailHelp">
+                                            <div class="uploadmypic text-center">
+                                                <img class="img-fluid" src="~/Admin_Content/images/admin/upload-file.png">
+                                                <h6>Upload a picture</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-5">
+                                    <button type="submit" class="btn text-uppercase text-center" id="mybtn"><b>submit</b></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <!-- Second Section Ends-->
+    </form>

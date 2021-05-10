@@ -39,5 +39,3 @@ namespace NoteMarketPlaces.Models
         public virtual User User1 { get; set; }
     }
 }
-
-

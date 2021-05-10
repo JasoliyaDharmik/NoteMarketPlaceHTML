@@ -1,0 +1,130 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<NoteMarketPlaces.Models.Category>
+
+@{
+    ViewBag.Title = "Manage Category";
+    Layout = "~/Views/Shared/AdminRegister.cshtml";
+}
+<section id="dashboard-top" class="admin-top">
+
+    <div class="container">
+
+        <!-- dashboard heading & add note button -->
+        <div class="row dashboard-top-title">
+
+            <!-- Title -->
+            <div class="col-md-6 col-sm-12 col-12">
+                <div class="dashboar-heading">
+                    <h2>Manage Category</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<section id="dashboard-second-section" class="admin-dashboard">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-5 col-lg-5">
+                <form action="AddCategory">
+                    <button type="submit" class="btn text-uppercase text-center admin-btn" id="mybtn"><b>Add Category</b></button>
+                </form>
+            </div>
+            <div class="col-12 col-sm-12 col-md-7 col-lg-7">
+                <form>
+                    <div class="row justify-content-end">
+                        <div class="wrapper">
+                            <img src="~/admin_content/images/Dashboard/search.jpg" class="searchimage doup">
+                            <input type="text" name="search" value="@Request.QueryString["search"]" class="form-control search-bar InputEmail1" placeholder="Search">
+                            <input name="sortBy" value="@Request.QueryString["sortBy"]" hidden />
+                        </div>
+                        <div class="marge-left">
+                            <button type="submit" class="btn text-uppercase text-center" id="mybtn"><b>Search</b></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="grid-table table-responsive-xl">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="align-middle text-center" >SR NO.</th>
+                                <th scope="col" class="align-middle" style="cursor:pointer" onclick="@("window.location.href='" + @Url.Action("ManageCategory", "Admin", new {  sortBy = "category", search = Request.QueryString["search"], page = Request.QueryString["page"] }) + "'");">CATEGORY</th>
+                                <th scope="col" class="align-middle" style="cursor:pointer" onclick="@("window.location.href='" + @Url.Action("ManageCategory", "Admin", new {  sortBy = "description", search = Request.QueryString["search"], page = Request.QueryString["page"] }) + "'");">DESCRIPTION</th>
+                                <th scope="col" class="align-middle" style="cursor:pointer" onclick="@("window.location.href='" + @Url.Action("ManageCategory", "Admin", new {  sortBy = "date", search = Request.QueryString["search"], page = Request.QueryString["page"] }) + "'");">DATE ADDED</th>
+                                <th scope="col" class="align-middle" style="cursor:pointer" onclick="@("window.location.href='" + @Url.Action("ManageCategory", "Admin", new {  sortBy = "addedBy", search = Request.QueryString["search"], page = Request.QueryString["page"] }) + "'");">ADDED BY</th>
+                                <th scope="col" class="align-middle text-center">ACTIVE</th>
+                                <th scope="col" class="align-middle">ACTiON</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.Count == 0)
+                            {
+                                <tr><td colspan="7" class="align-middle">No Record Found!</td></tr>
+                            }
+                            @{
+                                int i = -1, a;
+                                if (Request.QueryString["page"] == null || Request.QueryString["page"].AsInt() == 1)
+                                {
+                                    a = 1;
+                                }
+                                else
+                                {
+                                    a = (Request.QueryString["page"].AsInt() - 1) * 5 + 1;
+                                }
+                                foreach (var item in Model)
+                                {
+                                    i++;
+                                    <tr>
+                                        <td class="align-middle text-center">@(a + i)</td>
+                                        <td class="align-middle">@item.Categories</td>
+                                        <td class="align-middle">@item.Description</td>
+                                        <td class="align-middle">@item.CreatedDate.Value.ToString("dd-MM-yyyy,hh:mm")</td>
+                                        <td class="align-middle">@item.AddedBy</td>
+                                        <td class="align-middle text-center">@(item.IsActive == true ? "Yes" : "No")</td>
+                                        <td class="align-middle">
+                                            <div class="row">
+                                                <div class="col-6 col-sm-6 col-md-4 col-lg-3" style="cursor:pointer" onclick="@("window.location.href = '"+ @Url.Action("EditCategory","Admin", new { categoryId = item.ID.ToString() })+"'")">
+                                                    <img src="~/admin_content/images/Dashboard/edit.png" alt="Edit">
+                                                </div>
+                                                <div class="col-6 col-sm-6 col-md-4 col-lg-3" style="cursor:pointer" onclick="@("window.location.href = '"+ @Url.Action("DeleteCategory","Admin", new { categoryId = item.ID.ToString() })+"'")">
+                                                    <i class="fa fa-trash-alt dowhite dobig"></i>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+
+<!-- Pagination -->
+@Html.PagedListPager(Model, page => Url.Action("ManageCategory", new { page, sortBy = Request.QueryString["sortBy"], search = Request.QueryString["search"] }), new PagedListRenderOptions()
+{
+       Display = PagedListDisplayMode.IfNeeded,
+       ContainerDivClasses = null,
+       LiElementClasses = new string[] { "page-item" },
+       UlElementClasses = new string[] { "pagination justify-content-center" },
+       LinkToNextPageFormat = "<i class='fa fa-chevron-right'></i>",
+       LinkToPreviousPageFormat = "<i class='fa fa-chevron-left'></i>",
+       MaximumPageNumbersToDisplay = 5,
+       DisplayEllipsesWhenNotShowingAllPageNumbers = false,
+       DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+       DisplayLinkToLastPage = PagedListDisplayMode.Never
+})
+
+

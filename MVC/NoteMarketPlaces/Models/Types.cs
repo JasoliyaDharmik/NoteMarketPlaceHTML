@@ -11,12 +11,20 @@ namespace NoteMarketPlaces.Models
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class Type
+    using System.ComponentModel.DataAnnotations;
+
+    public partial class Types
     {
         public int ID { get; set; }
+
+        [Required]
+        [RegularExpression("^[a-zA-Z]*$", ErrorMessage = "Enter valid Type!")]
         public string TypeName { get; set; }
+
+        [Required]
         public string Description { get; set; }
+        public string AddedBy { get; set; }
+
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }

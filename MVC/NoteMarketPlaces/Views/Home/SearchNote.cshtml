@@ -65,7 +65,7 @@ else
                             <select class="form-control inputselect" name="type" id="type" onchange="location.href=this.value">
                                 <option value="@Url.Action("SearchNote", "Home", new {type="", university=Request.QueryString["university"],category=Request.QueryString["category"],course=Request.QueryString["course"],country=Request.QueryString["country"],rating=Request.QueryString["rating"], search = Request.QueryString["search"]})">Select type</option>
                                 @{
-                                    List<string> types = db.Types.Select(m => m.TypeName).ToList();
+                                    List<string> types = db.Types1.Where(m => m.IsActive == true).Select(m => m.TypeName).Distinct().ToList();
                                     foreach (var item in types)
                                     {
                                         if (item == @Request.QueryString["type"])
@@ -85,7 +85,7 @@ else
                             <select class="form-control inputselect" name="category" id="category" onchange="location.href=this.value">
                                 <option value="@Url.Action("SearchNote", "Home", new {category="", university=Request.QueryString["university"],type=Request.QueryString["type"],course=Request.QueryString["course"],country=Request.QueryString["country"],rating=Request.QueryString["rating"], search = Request.QueryString["search"]})">Select category</option>
                                 @{
-                                    List<string> categories = db.Categories.Select(m => m.Categories).ToList();
+                                    List<string> categories = db.Categories.Where(m => m.IsActive == true).Select(m => m.Categories).Distinct().ToList();
                                     foreach (var item in categories)
                                     {
                                         if (item == @Request.QueryString["category"])
@@ -152,7 +152,7 @@ else
                             <select class="form-control inputselect" id="country" name="country" onchange="location.href=this.value">
                                 <option value="@Url.Action("SearchNote", "Home", new {country="", type=Request.QueryString["type"],category=Request.QueryString["category"],university=Request.QueryString["university"],course=Request.QueryString["course"],rating=Request.QueryString["rating"], search = Request.QueryString["search"]})">Select country</option>
                                 @{
-                                    List<string> countries = db.Countries.Select(m => m.CountryName).Distinct().ToList();
+                                    List<string> countries = db.Countries.Where(m => m.IsActive == true).Select(m => m.CountryName).Distinct().ToList();
                                     foreach (var item in countries)
                                     {
                                         if (item == @Request.QueryString["country"])
@@ -304,7 +304,7 @@ else
     </section>
 </section>
 
-@Html.PagedListPager(Model, page => Url.Action("SearchNote", new { page }), new PagedListRenderOptions()
+@Html.PagedListPager(Model, page => Url.Action("SearchNote", new { page, search = Request.QueryString["search"], sortBy = Request.QueryString["sortBy"] }), new PagedListRenderOptions()
 {
        Display = PagedListDisplayMode.IfNeeded,
        ContainerDivClasses = null,
